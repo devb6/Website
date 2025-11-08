@@ -9,7 +9,7 @@ Untuk mengaktifkan GitHub Pages:
 3. Scroll ke bagian **Pages** (di sidebar kiri)
 4. Di bagian **Source**:
    - Pilih **"Deploy from a branch"**
-   - **Branch**: pilih `master`
+   - **Branch**: pilih `main`
    - **Folder**: pilih `/ (root)`
 5. Klik **Save**
 

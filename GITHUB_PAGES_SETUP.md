@@ -12,7 +12,7 @@ Jika Anda masih mendapatkan error 404, ikuti langkah-langkah berikut:
 - Scroll ke bagian **Pages** (di sidebar kiri)
 - Di bagian **Source**:
   - Pilih **"Deploy from a branch"**
-  - **Branch**: pilih `master` (atau `main` jika branch Anda `main`)
+  - **Branch**: pilih `main`
   - **Folder**: pilih `/ (root)`
 - Klik **Save**
 
@@ -37,7 +37,7 @@ Setelah deployment selesai, website akan tersedia di:
 
 ### Masih 404?
 1. Pastikan GitHub Pages sudah dikonfigurasi di Settings > Pages
-2. Pastikan branch yang dipilih adalah `master` (atau `main`)
+2. Pastikan branch yang dipilih adalah `main`
 3. Pastikan folder yang dipilih adalah `/ (root)`
 4. Tunggu 5-10 menit untuk deployment selesai
 5. Cek tab **Actions** untuk melihat status deployment
