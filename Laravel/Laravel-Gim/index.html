@@ -1129,8 +1129,19 @@
 
       console.log('Lottie library loaded, initializing animations...');
 
+      // Helper function to check if file exists
+      async function checkFileExists(url) {
+        try {
+          const response = await fetch(url, { method: 'HEAD' });
+          return response.ok;
+        } catch (error) {
+          console.warn('File check failed for:', url, error);
+          return false;
+        }
+      }
+
       // Helper function to load animation with error handling
-      function loadLottieAnimation(containerId, animationPath) {
+      async function loadLottieAnimation(containerId, animationPath) {
         const container = document.getElementById(containerId);
         if (!container) {
           console.error('Container not found:', containerId);
@@ -1139,6 +1150,41 @@
 
         // Clear container first
         container.innerHTML = '';
+
+        // Check if file exists first
+        const fullUrl = new URL(animationPath, window.location.origin + window.location.pathname).href;
+        const fileExists = await checkFileExists(fullUrl);
+        
+        if (!fileExists) {
+          console.warn('File not found, trying alternative paths for:', animationPath);
+          // Try alternative paths
+          const alternatives = [
+            '../../small-apps/' + animationPath.split('/').pop(),
+            '/Website/small-apps/' + animationPath.split('/').pop(),
+            'https://gimnasirwandi-boop.github.io/Website/small-apps/' + animationPath.split('/').pop()
+          ];
+          
+          let found = false;
+          for (const altPath of alternatives) {
+            const altUrl = new URL(altPath, window.location.origin).href;
+            if (await checkFileExists(altUrl)) {
+              animationPath = altPath;
+              found = true;
+              console.log('Found alternative path:', altPath);
+              break;
+            }
+          }
+          
+          if (!found) {
+            console.error('Could not find animation file:', animationPath);
+            if (containerId === 'lottie-hero') {
+              container.innerHTML = '<p style="color: #fff; padding: 20px; text-align: center;">Animation file not found</p>';
+            } else {
+              container.innerHTML = '<p style="padding: 20px; text-align: center; color: #666;">Animation unavailable</p>';
+            }
+            return null;
+          }
+        }
 
         try {
           console.log('Loading animation:', containerId, 'from:', animationPath);
@@ -1155,7 +1201,7 @@
             console.error('Failed to load animation:', containerId, animationPath, e);
             // Show fallback message
             if (containerId === 'lottie-hero') {
-              container.innerHTML = '<p style="color: #fff; padding: 20px; text-align: center;">Animation loading...</p>';
+              container.innerHTML = '<p style="color: #fff; padding: 20px; text-align: center;">Animation loading failed</p>';
             } else {
               container.innerHTML = '<p style="padding: 20px; text-align: center; color: #666;">Animation unavailable</p>';
             }
@@ -1185,17 +1231,42 @@
         }
       }
 
-      // Hero animation (Thynks.json)
-      loadLottieAnimation('lottie-hero', '../../small-apps/Thynks.json');
-      
-      // Technology animation
-      loadLottieAnimation('lottie-technology', '../../small-apps/Technology.json');
-      
-      // Web Design animation
-      loadLottieAnimation('lottie-webdesign', '../../small-apps/web design Lottie animation.json');
-      
-      // Content Manager animation
-      loadLottieAnimation('lottie-contentmanager', '../../small-apps/Content Manager.json');
+      // Helper function to get correct path for GitHub Pages
+      function getAnimationPath(filename) {
+        // Use absolute path from GitHub Pages root
+        const origin = window.location.origin;
+        const pathname = window.location.pathname;
+        
+        // Determine base path based on current location
+        let basePath;
+        if (pathname.includes('/Laravel/Laravel-Gim/')) {
+          // From Laravel-Gim: go up 2 levels (to Website root), then to small-apps
+          basePath = '../../small-apps/';
+        } else {
+          // Use absolute path from root
+          basePath = '/Website/small-apps/';
+        }
+        
+        // Construct full path
+        const fullPath = basePath + filename;
+        console.log('Animation path for', filename, ':', fullPath, '| Origin:', origin, '| Pathname:', pathname);
+        return fullPath;
+      }
+
+      // Load all animations
+      (async function() {
+        // Hero animation (Thynks.json)
+        await loadLottieAnimation('lottie-hero', getAnimationPath('Thynks.json'));
+        
+        // Technology animation
+        await loadLottieAnimation('lottie-technology', getAnimationPath('Technology.json'));
+        
+        // Web Design animation
+        await loadLottieAnimation('lottie-webdesign', getAnimationPath('web design Lottie animation.json'));
+        
+        // Content Manager animation
+        await loadLottieAnimation('lottie-contentmanager', getAnimationPath('Content Manager.json'));
+      })();
     }
 
     // Initialize when DOM is ready
