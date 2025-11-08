@@ -1092,10 +1092,44 @@
       });
     });
     
-    document.querySelector('form').addEventListener('submit', function(e) {
+    document.querySelector('form').addEventListener('submit', async function(e) {
       e.preventDefault();
-      alert('Terima kasih! Pesan Anda telah terkirim. Kami akan menghubungi Anda segera.');
-      this.reset();
+      
+      const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        service: document.getElementById('service').value,
+        message: document.getElementById('message').value
+      };
+
+      const submitButton = this.querySelector('button[type="submit"]');
+      const originalText = submitButton.textContent;
+      submitButton.disabled = true;
+      submitButton.textContent = 'Mengirim...';
+
+      try {
+        const whatsappNumber = '6281234567890';
+        const whatsappMessage = `Halo, saya tertarik dengan layanan Anda.\n\n` +
+          `Nama: ${formData.name}\n` +
+          `Email: ${formData.email}\n` +
+          `No. WhatsApp: ${formData.phone}\n` +
+          `Jenis Layanan: ${formData.service}\n` +
+          `Pesan: ${formData.message}`;
+        
+        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+        
+        window.open(whatsappUrl, '_blank');
+        
+        alert('Terima kasih! Pesan Anda telah terkirim. Kami akan menghubungi Anda segera.');
+        this.reset();
+      } catch (error) {
+        console.error('Error sending form:', error);
+        alert('Terjadi kesalahan. Silakan coba lagi atau hubungi kami langsung via WhatsApp.');
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = originalText;
+      }
     });
 
     function initLottieAnimations() {
