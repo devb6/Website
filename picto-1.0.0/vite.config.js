@@ -6,7 +6,7 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
   return {
-    base: `/${env.VITE_REPO_NAME}/`,
+    base: '/Website/picto-1.0.0/',
     plugins: [react(), tailwindcss()],
     server: {
       open: true,
