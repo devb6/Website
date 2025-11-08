@@ -1118,18 +1118,13 @@
       this.reset();
     });
 
-    // Load Lottie Animations
     function initLottieAnimations() {
-      // Wait for Lottie library to be fully loaded
       if (typeof lottie === 'undefined' || typeof lottie.loadAnimation === 'undefined') {
         console.warn('Lottie library not ready, retrying...');
         setTimeout(initLottieAnimations, 100);
         return;
       }
 
-      console.log('Lottie library loaded, initializing animations...');
-
-      // Helper function to check if file exists
       async function checkFileExists(url) {
         try {
           const response = await fetch(url, { method: 'HEAD' });
@@ -1140,7 +1135,6 @@
         }
       }
 
-      // Helper function to load animation with error handling
       async function loadLottieAnimation(containerId, animationPath) {
         const container = document.getElementById(containerId);
         if (!container) {
@@ -1148,29 +1142,25 @@
           return null;
         }
 
-        // Clear container first
         container.innerHTML = '';
 
-        // Try multiple paths until one works
         const filename = animationPath.split('/').pop();
         const pathOptions = [
           '../../small-apps/' + filename,
           '/Website/small-apps/' + filename,
           'https://gimnasirwandi-boop.github.io/Website/small-apps/' + filename,
-          animationPath // original path as fallback
+          animationPath
         ];
         
         let workingPath = null;
         for (const pathOption of pathOptions) {
           try {
-            // Construct full URL
             let fullUrl;
             if (pathOption.startsWith('http')) {
               fullUrl = pathOption;
             } else if (pathOption.startsWith('/')) {
               fullUrl = window.location.origin + pathOption;
             } else {
-              // Relative path
               const basePath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
               fullUrl = window.location.origin + basePath + '/' + pathOption;
             }
@@ -1200,8 +1190,6 @@
         animationPath = workingPath;
 
         try {
-          console.log('Loading animation:', containerId, 'from:', animationPath);
-          
           const animation = lottie.loadAnimation({
             container: container,
             renderer: 'svg',
@@ -1212,7 +1200,6 @@
 
           animation.addEventListener('data_failed', function(e) {
             console.error('Failed to load animation:', containerId, animationPath, e);
-            // Show fallback message
             if (containerId === 'lottie-hero') {
               container.innerHTML = '<p style="color: #fff; padding: 20px; text-align: center;">Animation loading failed</p>';
             } else {
@@ -1244,57 +1231,35 @@
         }
       }
 
-      // Helper function to get correct path for GitHub Pages
       function getAnimationPath(filename) {
-        // Use absolute path from GitHub Pages root
-        const origin = window.location.origin;
         const pathname = window.location.pathname;
-        
-        // Determine base path based on current location
         let basePath;
         if (pathname.includes('/Laravel/Laravel-Gim/')) {
-          // From Laravel-Gim: go up 2 levels (to Website root), then to small-apps
           basePath = '../../small-apps/';
         } else {
-          // Use absolute path from root
           basePath = '/Website/small-apps/';
         }
-        
-        // Construct full path
-        const fullPath = basePath + filename;
-        console.log('Animation path for', filename, ':', fullPath, '| Origin:', origin, '| Pathname:', pathname);
-        return fullPath;
+        return basePath + filename;
       }
 
-      // Load all animations
       (async function() {
-        // Hero animation (Thynks.json)
         await loadLottieAnimation('lottie-hero', getAnimationPath('Thynks.json'));
-        
-        // Technology animation
         await loadLottieAnimation('lottie-technology', getAnimationPath('Technology.json'));
-        
-        // Web Design animation
         await loadLottieAnimation('lottie-webdesign', getAnimationPath('web design Lottie animation.json'));
-        
-        // Content Manager animation
         await loadLottieAnimation('lottie-contentmanager', getAnimationPath('Content Manager.json'));
       })();
     }
 
-    // Initialize when DOM is ready
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', function() {
         initLottieAnimations();
         initPortfolioSlider();
       });
     } else {
-      // DOM is already ready
       initLottieAnimations();
       initPortfolioSlider();
     }
 
-    // Initialize Portfolio Slider
     function initPortfolioSlider() {
       if (typeof jQuery !== 'undefined' && jQuery.fn.slick) {
         jQuery('.portfolio-slider').slick({
