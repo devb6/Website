@@ -1151,40 +1151,53 @@
         // Clear container first
         container.innerHTML = '';
 
-        // Check if file exists first
-        const fullUrl = new URL(animationPath, window.location.origin + window.location.pathname).href;
-        const fileExists = await checkFileExists(fullUrl);
+        // Try multiple paths until one works
+        const filename = animationPath.split('/').pop();
+        const pathOptions = [
+          '../../small-apps/' + filename,
+          '/Website/small-apps/' + filename,
+          'https://gimnasirwandi-boop.github.io/Website/small-apps/' + filename,
+          animationPath // original path as fallback
+        ];
         
-        if (!fileExists) {
-          console.warn('File not found, trying alternative paths for:', animationPath);
-          // Try alternative paths
-          const alternatives = [
-            '../../small-apps/' + animationPath.split('/').pop(),
-            '/Website/small-apps/' + animationPath.split('/').pop(),
-            'https://gimnasirwandi-boop.github.io/Website/small-apps/' + animationPath.split('/').pop()
-          ];
-          
-          let found = false;
-          for (const altPath of alternatives) {
-            const altUrl = new URL(altPath, window.location.origin).href;
-            if (await checkFileExists(altUrl)) {
-              animationPath = altPath;
-              found = true;
-              console.log('Found alternative path:', altPath);
+        let workingPath = null;
+        for (const pathOption of pathOptions) {
+          try {
+            // Construct full URL
+            let fullUrl;
+            if (pathOption.startsWith('http')) {
+              fullUrl = pathOption;
+            } else if (pathOption.startsWith('/')) {
+              fullUrl = window.location.origin + pathOption;
+            } else {
+              // Relative path
+              const basePath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
+              fullUrl = window.location.origin + basePath + '/' + pathOption;
+            }
+            
+            const exists = await checkFileExists(fullUrl);
+            if (exists) {
+              workingPath = pathOption;
+              console.log('Found working path:', pathOption, '->', fullUrl);
               break;
             }
-          }
-          
-          if (!found) {
-            console.error('Could not find animation file:', animationPath);
-            if (containerId === 'lottie-hero') {
-              container.innerHTML = '<p style="color: #fff; padding: 20px; text-align: center;">Animation file not found</p>';
-            } else {
-              container.innerHTML = '<p style="padding: 20px; text-align: center; color: #666;">Animation unavailable</p>';
-            }
-            return null;
+          } catch (error) {
+            console.warn('Error checking path:', pathOption, error);
+            continue;
           }
         }
+        
+        if (!workingPath) {
+          console.error('Could not find animation file:', filename);
+          if (containerId === 'lottie-hero') {
+            container.innerHTML = '<p style="color: #fff; padding: 20px; text-align: center;">Animation file not found</p>';
+          } else {
+            container.innerHTML = '<p style="padding: 20px; text-align: center; color: #666;">Animation unavailable</p>';
+          }
+          return null;
+        }
+        
+        animationPath = workingPath;
 
         try {
           console.log('Loading animation:', containerId, 'from:', animationPath);
