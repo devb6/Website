@@ -375,6 +375,43 @@
       transform: scale(1.05);
     }
 
+    .portfolio-preview-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .portfolio-card:hover .portfolio-preview-overlay {
+      opacity: 1;
+    }
+
+    .preview-btn {
+      background: var(--primary-color);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .portfolio-card:hover .preview-btn {
+      transform: scale(1.05);
+    }
+
+    .portfolio-image a {
+      text-decoration: none;
+      color: inherit;
+    }
+
     .portfolio-info {
       padding: 20px;
       text-align: center;
@@ -464,6 +501,15 @@
         font-size: 0.85rem;
       }
 
+      .portfolio-preview-overlay {
+        opacity: 0.8;
+      }
+
+      .preview-btn {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+      }
+
       .portfolio-slider .slick-prev {
         left: -20px;
       }
@@ -494,6 +540,15 @@
       .portfolio-info p {
         font-size: 0.8rem;
         margin-bottom: 10px;
+      }
+
+      .portfolio-preview-overlay {
+        opacity: 0.7;
+      }
+
+      .preview-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
       }
 
       .portfolio-slider .slick-prev,
@@ -773,7 +828,12 @@
 					<div class="portfolio-item">
 						<div class="portfolio-card shadow">
 							<div class="portfolio-image">
-								<img src="../../small-apps/images/feature/iphone-ipad.jpg" alt="Web Landing Page" class="img-fluid">
+								<a href="../../templatemo_538_digital_trend/index.html" target="_blank" style="display: block; position: relative;">
+									<img src="../../templatemo_538_digital_trend/images/project/project-image01.jpg" alt="Web Landing Page" class="img-fluid">
+									<div class="portfolio-preview-overlay">
+										<span class="preview-btn">Lihat Preview</span>
+									</div>
+								</a>
 							</div>
 							<div class="portfolio-info">
 								<h4>Web Landing Page</h4>
