@@ -1092,7 +1092,7 @@
   <script src="../../small-apps/plugins/fancybox/jquery.fancybox.min.js"></script>
   <script src="../../small-apps/plugins/syotimer/jquery.syotimer.min.js"></script>
   <script src="../../small-apps/plugins/aos/aos.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgeuuDfRlweIs7D6uo4wdIHVvJ0LonQ6g"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgeuuDfRlweIs7D6uo4wdIHVvJ0LonQ6g"></script>
   <script src="../../small-apps/plugins/google-map/gmap.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
   
@@ -1271,13 +1271,18 @@
 
     // Initialize when DOM is ready
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initLottieAnimations);
+      document.addEventListener('DOMContentLoaded', function() {
+        initLottieAnimations();
+        initPortfolioSlider();
+      });
     } else {
       // DOM is already ready
       initLottieAnimations();
+      initPortfolioSlider();
     }
 
-      // Initialize Portfolio Slider
+    // Initialize Portfolio Slider
+    function initPortfolioSlider() {
       if (typeof jQuery !== 'undefined' && jQuery.fn.slick) {
         jQuery('.portfolio-slider').slick({
           slidesToShow: 3,
@@ -1307,7 +1312,7 @@
           ]
         });
       }
-    });
+    }
   </script>
 </body>
 
