@@ -328,6 +328,183 @@
         padding: 1rem !important;
       }
     }
+
+    /* Portfolio Styles */
+    .portfolio-section {
+      padding: 4rem 0;
+    }
+
+    .portfolio-slider {
+      margin: 0 -15px;
+    }
+
+    .portfolio-item {
+      padding: 0 15px;
+    }
+
+    .portfolio-card {
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: #fff;
+      margin-bottom: 20px;
+    }
+
+    .portfolio-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
+    }
+
+    .portfolio-image {
+      position: relative;
+      overflow: hidden;
+      height: 300px;
+    }
+
+    .portfolio-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .portfolio-card:hover .portfolio-image img {
+      transform: scale(1.1);
+    }
+
+    .portfolio-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom, rgba(230, 126, 34, 0.9), rgba(211, 84, 0, 0.95));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      padding: 20px;
+    }
+
+    .portfolio-card:hover .portfolio-overlay {
+      opacity: 1;
+    }
+
+    .portfolio-content {
+      text-align: center;
+      color: #fff;
+    }
+
+    .portfolio-content h4 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .portfolio-content p {
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+      color: rgba(255, 255, 255, 0.95);
+      line-height: 1.6;
+    }
+
+    .portfolio-tag {
+      display: inline-block;
+      padding: 5px 15px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    /* Portfolio Slider */
+    .portfolio-slider .slick-slide {
+      padding: 0 10px;
+    }
+
+    .portfolio-slider .slick-dots {
+      bottom: -40px;
+    }
+
+    .portfolio-slider .slick-dots li button:before {
+      color: var(--primary-color);
+      font-size: 12px;
+    }
+
+    .portfolio-slider .slick-dots li.slick-active button:before {
+      color: var(--primary-color);
+    }
+
+    .portfolio-slider .slick-prev,
+    .portfolio-slider .slick-next {
+      z-index: 1;
+      width: 40px;
+      height: 40px;
+    }
+
+    .portfolio-slider .slick-prev {
+      left: -50px;
+    }
+
+    .portfolio-slider .slick-next {
+      right: -50px;
+    }
+
+    .portfolio-slider .slick-prev:before,
+    .portfolio-slider .slick-next:before {
+      font-size: 30px;
+      color: var(--primary-color);
+    }
+
+    @media (max-width: 768px) {
+      .portfolio-image {
+        height: 250px;
+      }
+
+      .portfolio-content h4 {
+        font-size: 1.2rem;
+      }
+
+      .portfolio-content p {
+        font-size: 0.85rem;
+      }
+
+      .portfolio-slider .slick-prev {
+        left: -20px;
+      }
+
+      .portfolio-slider .slick-next {
+        right: -20px;
+      }
+
+      .portfolio-slider .slick-prev:before,
+      .portfolio-slider .slick-next:before {
+        font-size: 20px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .portfolio-image {
+        height: 200px;
+      }
+
+      .portfolio-content h4 {
+        font-size: 1.1rem;
+      }
+
+      .portfolio-content p {
+        font-size: 0.8rem;
+      }
+
+      .portfolio-slider .slick-prev,
+      .portfolio-slider .slick-next {
+        display: none !important;
+      }
+    }
   </style>
 
 </head>
@@ -354,7 +531,7 @@
           <a class="nav-link" href="#keunggulan">Keunggulan</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#testimoni">Testimoni</a>
+          <a class="nav-link" href="#portfolio">Portfolio</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#kontak">Kontak</a>
@@ -524,71 +701,101 @@
 	</div>
 </section>
 
-<section class="video-promo section bg-1">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="content-block">
-					<h2>Lihat Portfolio Kami</h2>
-					<p>Jelajahi berbagai project website yang telah kami selesaikan dengan sukses. Setiap project adalah bukti komitmen kami terhadap kualitas dan kepuasan klien.</p>
-					<a href="#kontak" class="btn btn-main-md mt-4">Lihat Portfolio</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-
-<section class="section testimonial" id="testimoni">
+<section class="section portfolio-section bg-gray" id="portfolio">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="section-title text-center mb-5">
-					<h2>Apa Kata Klien Kami?</h2>
-					<p>Testimoni dari klien yang telah menggunakan layanan kami</p>
+					<h2>Portfolio Kami</h2>
+					<p>Jelajahi berbagai project website yang telah kami selesaikan dengan sukses. Setiap project adalah bukti komitmen kami terhadap kualitas dan kepuasan klien.</p>
 				</div>
-				<div class="testimonial-slider owl-carousel owl-theme">
-					<div class="item">
-						<div class="block shadow">
-							<p>
-								"Website yang dibuat sangat profesional dan sesuai dengan kebutuhan bisnis saya. Proses pengerjaan cepat dan komunikasi sangat baik. Sangat recommended!"
-							</p>
-							<div class="image">
-								<img src="small-apps/images/testimonial/feature-testimonial-thumb.jpg" alt="testimoni">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="portfolio-slider">
+					<div class="portfolio-item">
+						<div class="portfolio-card shadow">
+							<div class="portfolio-image">
+								<img src="small-apps/images/feature/feature-new-01.jpg" alt="Web E-Commerce" class="img-fluid">
+								<div class="portfolio-overlay">
+									<div class="portfolio-content">
+										<h4>Web E-Commerce</h4>
+										<p>Website toko online dengan fitur lengkap untuk penjualan produk</p>
+										<span class="portfolio-tag">E-Commerce</span>
+									</div>
+								</div>
 							</div>
-							<cite>Budi Santoso, Owner Toko Online</cite>
 						</div>
 					</div>
-					<div class="item">
-						<div class="block shadow">
-							<p>
-								"Alhamdulillah skripsi saya lulus berkat bantuan joki website dari sini. Website yang dibuat sangat bagus, dokumentasi lengkap, dan tim sangat membantu dalam proses revisi. Terima kasih banyak!"
-							</p>
-							<div class="image">
-								<img src="small-apps/images/testimonial/feature-testimonial-thumb.jpg" alt="testimoni">
+					<div class="portfolio-item">
+						<div class="portfolio-card shadow">
+							<div class="portfolio-image">
+								<img src="small-apps/images/feature/feature-new-02.jpg" alt="Company Profile" class="img-fluid">
+								<div class="portfolio-overlay">
+									<div class="portfolio-content">
+										<h4>Company Profile</h4>
+										<p>Website profil perusahaan yang profesional dan modern</p>
+										<span class="portfolio-tag">Company</span>
+									</div>
+								</div>
 							</div>
-							<cite>Siti Nurhaliza, Mahasiswa Teknik Informatika</cite>
 						</div>
 					</div>
-					<div class="item">
-						<div class="block shadow">
-							<p>
-								"Pelayanan sangat memuaskan! Website company profile yang dibuat sangat menarik dan responsive. Harga juga sangat terjangkau untuk kualitas yang diberikan. Will order again!"
-							</p>
-							<div class="image">
-								<img src="small-apps/images/testimonial/feature-testimonial-thumb.jpg" alt="testimoni">
+					<div class="portfolio-item">
+						<div class="portfolio-card shadow">
+							<div class="portfolio-image">
+								<img src="small-apps/images/feature/iphone-ipad.jpg" alt="Web Inventory" class="img-fluid">
+								<div class="portfolio-overlay">
+									<div class="portfolio-content">
+										<h4>Web Inventory</h4>
+										<p>Sistem manajemen inventory untuk mengelola stok barang</p>
+										<span class="portfolio-tag">Inventory</span>
+									</div>
+								</div>
 							</div>
-							<cite>Andi Wijaya, CEO Startup Company</cite>
 						</div>
 					</div>
-					<div class="item">
-						<div class="block shadow">
-							<p>
-								"Tim sangat profesional dan responsif. Website e-commerce yang dibuat sesuai ekspektasi dan sudah live dengan lancar. Support setelah project selesai juga sangat baik. Recommended!"
-							</p>
-							<div class="image">
-								<img src="small-apps/images/testimonial/feature-testimonial-thumb.jpg" alt="testimoni">
+					<div class="portfolio-item">
+						<div class="portfolio-card shadow">
+							<div class="portfolio-image">
+								<img src="small-apps/images/feature/feature-new-01.jpg" alt="Web Blog" class="img-fluid">
+								<div class="portfolio-overlay">
+									<div class="portfolio-content">
+										<h4>Web Blog</h4>
+										<p>Website blog dengan CMS untuk konten management</p>
+										<span class="portfolio-tag">Blog</span>
+									</div>
+								</div>
 							</div>
-							<cite>Rina Kartika, Business Owner</cite>
+						</div>
+					</div>
+					<div class="portfolio-item">
+						<div class="portfolio-card shadow">
+							<div class="portfolio-image">
+								<img src="small-apps/images/feature/feature-new-02.jpg" alt="Web Dashboard" class="img-fluid">
+								<div class="portfolio-overlay">
+									<div class="portfolio-content">
+										<h4>Web Dashboard</h4>
+										<p>Dashboard admin untuk monitoring dan analitik data</p>
+										<span class="portfolio-tag">Dashboard</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="portfolio-item">
+						<div class="portfolio-card shadow">
+							<div class="portfolio-image">
+								<img src="small-apps/images/feature/iphone-ipad.jpg" alt="Web Landing Page" class="img-fluid">
+								<div class="portfolio-overlay">
+									<div class="portfolio-content">
+										<h4>Web Landing Page</h4>
+										<p>Landing page yang menarik untuk campaign marketing</p>
+										<span class="portfolio-tag">Landing</span>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -730,7 +937,7 @@
             <ul>
               <li><a href="#home">Tentang Kami</a></li>
               <li><a href="#keunggulan">Keunggulan</a></li>
-              <li><a href="#testimoni">Testimoni</a></li>
+              <li><a href="#portfolio">Portfolio</a></li>
               <li><a href="#kontak">Kontak</a></li>
             </ul>
           </div>
@@ -827,6 +1034,37 @@
           loop: true,
           autoplay: true,
           path: 'small-apps/Content Manager.json'
+        });
+      }
+
+      // Initialize Portfolio Slider
+      if (typeof jQuery !== 'undefined' && jQuery.fn.slick) {
+        jQuery('.portfolio-slider').slick({
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          autoplay: true,
+          autoplaySpeed: 3000,
+          dots: true,
+          arrows: true,
+          infinite: true,
+          speed: 500,
+          responsive: [
+            {
+              breakpoint: 992,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1
+              }
+            },
+            {
+              breakpoint: 768,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: false
+              }
+            }
+          ]
         });
       }
     });
