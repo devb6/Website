@@ -90,6 +90,19 @@
     .bg-gray {
       background: var(--cream-bg) !important;
     }
+
+    #lottie-technology {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      min-height: 400px;
+    }
+
+    @media (max-width: 768px) {
+      #lottie-technology {
+        min-height: 300px;
+      }
+    }
   </style>
 
 </head>
@@ -187,7 +200,7 @@
 		<div class="row">
 			<div class="col-lg-6 ml-auto justify-content-center">
 				<div class="image-content" data-aos="fade-right">
-					<img class="img-fluid" src="small-apps/images/feature/feature-new-01.jpg" alt="Jasa Pembuatan Website">
+					<div id="lottie-technology"></div>
 				</div>
 			</div>
 			<div class="col-lg-6 mr-auto align-self-center">
@@ -537,6 +550,7 @@
   <script src="small-apps/plugins/aos/aos.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgeuuDfRlweIs7D6uo4wdIHVvJ0LonQ6g"></script>
   <script src="small-apps/plugins/google-map/gmap.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
   
   <script src="small-apps/js/script.js"></script>
   
@@ -558,6 +572,19 @@
       e.preventDefault();
       alert('Terima kasih! Pesan Anda telah terkirim. Kami akan menghubungi Anda segera.');
       this.reset();
+    });
+
+    // Load Lottie Animation
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof lottie !== 'undefined') {
+        lottie.loadAnimation({
+          container: document.getElementById('lottie-technology'),
+          renderer: 'svg',
+          loop: true,
+          autoplay: true,
+          path: 'small-apps/Technology.json'
+        });
+      }
     });
   </script>
 </body>
