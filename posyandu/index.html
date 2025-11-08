@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Posyandu - Preview</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
+        .font-family-karla { font-family: karla; }
+        .bg-sidebar { background: #3d68ff; }
+        .cta-btn { color: #3d68ff; }
+        .upgrade-btn { background: #1947ee; }
+        .upgrade-btn:hover { background: #0038fd; }
+        .active-nav-link { background: #1947ee; }
+        .nav-item:hover { background: #1947ee; }
+        .account-link:hover { background: #3d68ff; }
+        #lottie-animation {
+            width: 100%;
+            height: 100%;
+            max-width: 600px;
+            max-height: 600px;
+            min-height: 300px;
+        }
+        
+        @media (max-width: 1024px) {
+            #lottie-animation {
+                max-width: 400px;
+                max-height: 400px;
+                min-height: 250px;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            #lottie-animation {
+                max-width: 300px;
+                max-height: 300px;
+                min-height: 200px;
+            }
+        }
+        
+        /* Hide views */
+        .view-section {
+            display: none;
+        }
+        .view-section.active {
+            display: block;
+        }
+        
+        html, body {
+            height: 100%;
+        }
+        
+        @media (min-width: 1024px) {
+            .dashboard-view body {
+                padding-left: 16rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-family-karla min-h-screen">
+
+    <!-- LOGIN VIEW -->
+    <div id="login-view" class="view-section active">
+        <div class="min-h-screen flex flex-col lg:flex-row">
+            <!-- Left Side - Animation/Illustration -->
+            <div class="w-full lg:w-1/2 flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-4 lg:p-8">
+                <div id="lottie-animation" class="w-full h-full flex items-center justify-center">
+                    <!-- Fallback jika animasi tidak dimuat -->
+                    <div class="text-center text-gray-400">
+                        <svg class="w-64 h-64 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                        <p class="text-xl font-semibold text-gray-600">Sistem Posyandu</p>
+                        <p class="text-sm text-gray-500 mt-2">Manajemen Data Kesehatan</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side - Login Form -->
+            <div class="w-full lg:w-1/2 flex items-center justify-center p-4 lg:p-8">
+                <div class="w-full max-w-md">
+                    <div class="bg-white rounded-lg shadow-xl p-6 lg:p-8">
+                        <div class="text-center mb-8">
+                            <svg class="h-16 w-16 mx-auto mb-4" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="30" cy="30" r="28" fill="#FF2D20"/>
+                                <text x="30" y="40" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="white" text-anchor="middle">G</text>
+                            </svg>
+                            <h1 class="text-2xl lg:text-3xl font-bold text-gray-800">Sistem Posyandu</h1>
+                            <p class="text-gray-600 mt-2">Silakan login untuk melanjutkan</p>
+                        </div>
+
+                        <div id="login-error" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4 hidden" role="alert">
+                            <span class="block sm:inline" id="error-message"></span>
+                        </div>
+
+                        <form id="login-form">
+                            <div class="mb-4">
+                                <label class="block text-sm text-gray-600 mb-2" for="email">Email</label>
+                                <input class="w-full px-5 py-2 text-gray-700 bg-gray-200 rounded focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                                       id="email" name="email" type="email" required placeholder="Email Anda" value="admin@posyandu.com">
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="block text-sm text-gray-600 mb-2" for="password">Password</label>
+                                <input class="w-full px-5 py-2 text-gray-700 bg-gray-200 rounded focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                                       id="password" name="password" type="password" required placeholder="Password" value="password">
+                            </div>
+
+                            <div class="mb-6">
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="remember" class="mr-2">
+                                    <span class="text-sm text-gray-600">Ingat saya</span>
+                                </label>
+                            </div>
+
+                            <div class="mb-4">
+                                <button class="w-full bg-sidebar text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 transition-colors" type="submit">
+                                    Login
+                                </button>
+                            </div>
+
+                            <div class="text-center">
+                                <p class="text-sm text-gray-600">
+                                    Belum punya akun? 
+                                    <a href="#" class="text-sidebar hover:underline">Daftar di sini</a>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DASHBOARD VIEW -->
+    <div id="dashboard-view" class="view-section">
+        <aside class="bg-sidebar w-64 hidden lg:block shadow-xl fixed left-0 top-0 z-30" style="height: 100vh; overflow-y: auto;">
+            <div class="flex flex-col h-full">
+                <div class="p-4 lg:p-6 flex-shrink-0">
+                    <a href="#" class="flex items-center">
+                        <svg class="h-8 lg:h-10 w-auto mr-2" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="30" cy="30" r="28" fill="#FF2D20"/>
+                            <text x="30" y="40" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="white" text-anchor="middle">G</text>
+                        </svg>
+                        <span class="text-white text-lg lg:text-xl font-semibold uppercase hover:text-gray-300">Posyandu</span>
+                    </a>
+                    <button class="w-full bg-white cta-btn font-semibold py-2 mt-4 lg:mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center text-sm lg:text-base">
+                        <i class="fas fa-plus mr-2 lg:mr-3"></i> Data Baru
+                    </button>
+                </div>
+                <nav class="text-white text-sm lg:text-base font-semibold pt-3 flex-1 pb-4">
+                    <a href="#" class="flex items-center active-nav-link text-white py-3 lg:py-4 pl-4 lg:pl-6 nav-item">
+                        <i class="fas fa-tachometer-alt mr-2 lg:mr-3"></i>
+                        Dashboard
+                    </a>
+                    <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-3 lg:py-4 pl-4 lg:pl-6 nav-item">
+                        <i class="fas fa-baby mr-2 lg:mr-3"></i>
+                        Data Balita
+                    </a>
+                    <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-3 lg:py-4 pl-4 lg:pl-6 nav-item">
+                        <i class="fas fa-user-injured mr-2 lg:mr-3"></i>
+                        Data Ibu Hamil
+                    </a>
+                    <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-3 lg:py-4 pl-4 lg:pl-6 nav-item">
+                        <i class="fas fa-calendar mr-2 lg:mr-3"></i>
+                        Jadwal Kegiatan
+                    </a>
+                    <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-3 lg:py-4 pl-4 lg:pl-6 nav-item">
+                        <i class="fas fa-file-alt mr-2 lg:mr-3"></i>
+                        Laporan
+                    </a>
+                </nav>
+            </div>
+        </aside>
+
+        <div class="w-full content-wrapper flex flex-col min-h-screen lg:ml-64">
+            <!-- Desktop Header -->
+            <header class="w-full items-center bg-white py-2 px-4 lg:px-6 hidden lg:flex sticky top-0 z-20 shadow-sm flex-shrink-0">
+                <div class="w-1/2">
+                    <h2 class="text-xl lg:text-2xl font-semibold text-gray-800">Dashboard</h2>
+                </div>
+                <div x-data="{ isOpen: false }" class="relative w-1/2 flex justify-end">
+                    <button @click="isOpen = !isOpen" class="relative z-10 w-10 h-10 lg:w-12 lg:h-12 rounded-full overflow-hidden border-4 border-gray-400 hover:border-gray-300 focus:border-gray-300 focus:outline-none">
+                        <img src="https://ui-avatars.com/api/?name=Admin+User&background=3d68ff&color=fff" alt="User">
+                    </button>
+                    <button x-show="isOpen" @click="isOpen = false" class="h-full w-full fixed inset-0 cursor-default"></button>
+                    <div x-show="isOpen" class="absolute w-48 bg-white rounded-lg shadow-lg py-2 mt-16 right-0">
+                        <div class="block px-4 py-2 text-gray-800 font-semibold border-b text-sm lg:text-base">Admin User</div>
+                        <div class="block px-4 py-2 text-gray-600 text-xs lg:text-sm border-b">admin@posyandu.com</div>
+                        <div class="block px-4 py-2 border-b">
+                            <span class="inline-block px-2 py-1 text-xs font-semibold rounded bg-red-100 text-red-800">
+                                Admin
+                            </span>
+                        </div>
+                        <a href="#" onclick="showLogin(); return false;" class="block px-4 py-2 account-link hover:text-white">
+                            <i class="fas fa-sign-out-alt mr-2"></i> Sign Out
+                        </a>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Mobile Header & Nav -->
+            <header x-data="{ isOpen: false }" class="w-full bg-sidebar py-4 px-4 lg:hidden sticky top-0 z-30 shadow-lg">
+                <div class="flex items-center justify-between">
+                    <a href="#" class="flex items-center">
+                        <svg class="h-8 w-auto mr-2" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="30" cy="30" r="28" fill="#FF2D20"/>
+                            <text x="30" y="40" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="white" text-anchor="middle">G</text>
+                        </svg>
+                        <span class="text-white text-lg font-semibold uppercase hover:text-gray-300">Posyandu</span>
+                    </a>
+                    <button @click="isOpen = !isOpen" class="text-white text-2xl focus:outline-none">
+                        <i x-show="!isOpen" class="fas fa-bars"></i>
+                        <i x-show="isOpen" class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <!-- Dropdown Nav -->
+                <nav :class="isOpen ? 'flex': 'hidden'" class="flex flex-col pt-4 max-h-[calc(100vh-80px)] overflow-y-auto">
+                    <a href="#" class="flex items-center active-nav-link text-white py-2 pl-4 nav-item">
+                        <i class="fas fa-tachometer-alt mr-3"></i>
+                        Dashboard
+                    </a>
+                    <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                        <i class="fas fa-baby mr-3"></i>
+                        Data Balita
+                    </a>
+                    <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                        <i class="fas fa-user-injured mr-3"></i>
+                        Data Ibu Hamil
+                    </a>
+                    <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                        <i class="fas fa-calendar mr-3"></i>
+                        Jadwal Kegiatan
+                    </a>
+                    <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                        <i class="fas fa-file-alt mr-3"></i>
+                        Laporan
+                    </a>
+                    <div class="px-4 py-2 text-white border-t border-blue-500 mt-2">
+                        <div class="text-sm font-semibold">Admin User</div>
+                        <div class="text-xs opacity-75">admin@posyandu.com</div>
+                        <div class="mt-2">
+                            <span class="inline-block px-2 py-1 text-xs font-semibold rounded bg-red-500 text-white">
+                                Admin
+                            </span>
+                        </div>
+                    </div>
+                    <a href="#" onclick="showLogin(); return false;" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                        <i class="fas fa-sign-out-alt mr-3"></i>
+                        Sign Out
+                    </a>
+                </nav>
+            </header>
+        
+            <div class="w-full overflow-x-hidden flex flex-col flex-1 min-h-0">
+                <main class="w-full flex-1 p-4 lg:p-6 overflow-y-auto">
+                    <div class="mb-6">
+                        <h1 class="text-2xl lg:text-3xl text-black font-bold">Dashboard</h1>
+                        <p class="text-gray-600 mt-1">Selamat datang, Admin User!</p>
+                    </div>
+
+                    <!-- Statistik Cards -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-6">
+                        <div class="bg-white rounded-lg shadow-md p-4 lg:p-6 hover:shadow-lg transition-shadow">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-gray-600 text-xs lg:text-sm font-medium mb-1">Total Balita</p>
+                                    <p class="text-2xl lg:text-3xl font-bold text-gray-800">45</p>
+                                </div>
+                                <div class="p-3 bg-blue-100 rounded-full">
+                                    <i class="fas fa-baby text-blue-500 text-xl lg:text-2xl"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-md p-4 lg:p-6 hover:shadow-lg transition-shadow">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-gray-600 text-xs lg:text-sm font-medium mb-1">Total Ibu Hamil</p>
+                                    <p class="text-2xl lg:text-3xl font-bold text-gray-800">32</p>
+                                </div>
+                                <div class="p-3 bg-green-100 rounded-full">
+                                    <i class="fas fa-user-injured text-green-500 text-xl lg:text-2xl"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-md p-4 lg:p-6 hover:shadow-lg transition-shadow">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-gray-600 text-xs lg:text-sm font-medium mb-1">Total Jadwal</p>
+                                    <p class="text-2xl lg:text-3xl font-bold text-gray-800">12</p>
+                                </div>
+                                <div class="p-3 bg-purple-100 rounded-full">
+                                    <i class="fas fa-calendar text-purple-500 text-xl lg:text-2xl"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-md p-4 lg:p-6 hover:shadow-lg transition-shadow">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-gray-600 text-xs lg:text-sm font-medium mb-1">Balita Baru</p>
+                                    <p class="text-2xl lg:text-3xl font-bold text-gray-800">8</p>
+                                    <p class="text-xs text-gray-500 mt-1">Bulan ini</p>
+                                </div>
+                                <div class="p-3 bg-yellow-100 rounded-full">
+                                    <i class="fas fa-plus text-yellow-500 text-xl lg:text-2xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Grafik Section -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 mb-6">
+                        <div class="bg-white rounded-lg shadow-md p-4 lg:p-6">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-chart-bar text-sidebar mr-3 text-lg"></i>
+                                <h3 class="text-lg lg:text-xl font-semibold text-gray-800">Grafik Bulanan</h3>
+                            </div>
+                            <div class="relative" style="height: 250px;">
+                                <canvas id="chartOne"></canvas>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg shadow-md p-4 lg:p-6">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-chart-line text-sidebar mr-3 text-lg"></i>
+                                <h3 class="text-lg lg:text-xl font-semibold text-gray-800">Trend Data</h3>
+                            </div>
+                            <div class="relative" style="height: 250px;">
+                                <canvas id="chartTwo"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Data Terbaru Section -->
+                    <div class="bg-white rounded-lg shadow-md p-4 lg:p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-list text-sidebar mr-3 text-lg"></i>
+                                <h3 class="text-lg lg:text-xl font-semibold text-gray-800">Data Terbaru</h3>
+                            </div>
+                            <a href="#" class="text-sidebar hover:text-blue-700 text-sm font-medium">
+                                Lihat Semua <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full bg-white text-sm lg:text-base">
+                                <thead class="bg-gray-50 border-b">
+                                    <tr>
+                                        <th class="text-left py-3 px-4 uppercase font-semibold text-xs text-gray-700">Nama</th>
+                                        <th class="text-left py-3 px-4 uppercase font-semibold text-xs text-gray-700">Jenis</th>
+                                        <th class="text-left py-3 px-4 uppercase font-semibold text-xs text-gray-700">Tanggal</th>
+                                        <th class="text-left py-3 px-4 uppercase font-semibold text-xs text-gray-700">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-gray-700 divide-y divide-gray-200">
+                                    <tr class="hover:bg-gray-50 transition-colors">
+                                        <td class="py-3 px-4 font-medium">Ahmad Fauzi</td>
+                                        <td class="py-3 px-4">
+                                            <span class="inline-block px-2 py-1 text-xs rounded bg-blue-100 text-blue-800">
+                                                Balita
+                                            </span>
+                                        </td>
+                                        <td class="py-3 px-4">15/01/2024</td>
+                                        <td class="py-3 px-4">
+                                            <a href="#" class="text-sidebar hover:text-blue-700 font-medium">
+                                                <i class="fas fa-eye mr-1"></i> Lihat
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50 transition-colors">
+                                        <td class="py-3 px-4 font-medium">Siti Nurhaliza</td>
+                                        <td class="py-3 px-4">
+                                            <span class="inline-block px-2 py-1 text-xs rounded bg-green-100 text-green-800">
+                                                Ibu Hamil
+                                            </span>
+                                        </td>
+                                        <td class="py-3 px-4">14/01/2024</td>
+                                        <td class="py-3 px-4">
+                                            <a href="#" class="text-sidebar hover:text-blue-700 font-medium">
+                                                <i class="fas fa-eye mr-1"></i> Lihat
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50 transition-colors">
+                                        <td class="py-3 px-4 font-medium">Budi Santoso</td>
+                                        <td class="py-3 px-4">
+                                            <span class="inline-block px-2 py-1 text-xs rounded bg-blue-100 text-blue-800">
+                                                Balita
+                                            </span>
+                                        </td>
+                                        <td class="py-3 px-4">13/01/2024</td>
+                                        <td class="py-3 px-4">
+                                            <a href="#" class="text-sidebar hover:text-blue-700 font-medium">
+                                                <i class="fas fa-eye mr-1"></i> Lihat
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50 transition-colors">
+                                        <td class="py-3 px-4 font-medium">Rina Wati</td>
+                                        <td class="py-3 px-4">
+                                            <span class="inline-block px-2 py-1 text-xs rounded bg-green-100 text-green-800">
+                                                Ibu Hamil
+                                            </span>
+                                        </td>
+                                        <td class="py-3 px-4">12/01/2024</td>
+                                        <td class="py-3 px-4">
+                                            <a href="#" class="text-sidebar hover:text-blue-700 font-medium">
+                                                <i class="fas fa-eye mr-1"></i> Lihat
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50 transition-colors">
+                                        <td class="py-3 px-4 font-medium">Dewa Kurniawan</td>
+                                        <td class="py-3 px-4">
+                                            <span class="inline-block px-2 py-1 text-xs rounded bg-blue-100 text-blue-800">
+                                                Balita
+                                            </span>
+                                        </td>
+                                        <td class="py-3 px-4">11/01/2024</td>
+                                        <td class="py-3 px-4">
+                                            <a href="#" class="text-sidebar hover:text-blue-700 font-medium">
+                                                <i class="fas fa-eye mr-1"></i> Lihat
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </main>
+        
+                <footer class="w-full bg-white text-center lg:text-right p-4 border-t shadow-sm flex-shrink-0">
+                    <p class="text-xs lg:text-sm text-gray-600">Sistem Informasi Posyandu © 2024</p>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // View Management
+        function showLogin() {
+            document.getElementById('login-view').classList.add('active');
+            document.getElementById('dashboard-view').classList.remove('active');
+            document.body.classList.remove('dashboard-view');
+        }
+
+        function showDashboard() {
+            document.getElementById('login-view').classList.remove('active');
+            document.getElementById('dashboard-view').classList.add('active');
+            document.body.classList.add('dashboard-view');
+            initCharts();
+        }
+
+        // Login Form Handler
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Hide error message
+            document.getElementById('login-error').classList.add('hidden');
+            
+            // Simulate login (in real app, this would be an API call)
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // Simple validation
+            if (email && password) {
+                // Show dashboard after short delay (simulate API call)
+                setTimeout(function() {
+                    showDashboard();
+                }, 300);
+            } else {
+                document.getElementById('error-message').textContent = 'Email dan password harus diisi';
+                document.getElementById('login-error').classList.remove('hidden');
+            }
+        });
+
+        // Load Lottie animation (optional - will show fallback if not available)
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                // Try to load animation from public/Doctor.json
+                if (typeof lottie !== 'undefined') {
+                    var animation = lottie.loadAnimation({
+                        container: document.getElementById('lottie-animation'),
+                        renderer: 'svg',
+                        loop: true,
+                        autoplay: true,
+                        path: 'public/Doctor.json'
+                    });
+
+                    animation.addEventListener('data_failed', function() {
+                        // Animation failed to load, fallback is already in HTML
+                        console.log('Animation tidak dapat dimuat, menggunakan fallback');
+                    });
+                }
+            } catch (error) {
+                console.log('Lottie tidak tersedia, menggunakan fallback');
+            }
+        });
+
+        // Initialize Charts
+        function initCharts() {
+            // Check if charts are already initialized
+            if (window.chartsInitialized) {
+                return;
+            }
+
+            // Grafik Bulanan - Bar Chart
+            var ctxOne = document.getElementById('chartOne');
+            if (ctxOne) {
+                var chartOne = new Chart(ctxOne.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'],
+                        datasets: [{
+                            label: 'Jumlah Data',
+                            data: [12, 19, 3, 5, 8, 15],
+                            backgroundColor: 'rgba(61, 104, 255, 0.8)',
+                            borderColor: 'rgba(61, 104, 255, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        legend: {
+                            display: false
+                        },
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true,
+                                    stepSize: 1
+                                },
+                                gridLines: {
+                                    color: 'rgba(0, 0, 0, 0.05)'
+                                }
+                            }],
+                            xAxes: [{
+                                gridLines: {
+                                    display: false
+                                }
+                            }]
+                        }
+                    }
+                });
+            }
+
+            // Trend Data - Line Chart
+            var ctxTwo = document.getElementById('chartTwo');
+            if (ctxTwo) {
+                var chartTwo = new Chart(ctxTwo.getContext('2d'), {
+                    type: 'line',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'],
+                        datasets: [{
+                            label: 'Trend Data',
+                            data: [12, 19, 3, 5, 8, 15],
+                            backgroundColor: 'rgba(61, 104, 255, 0.1)',
+                            borderColor: 'rgba(61, 104, 255, 1)',
+                            borderWidth: 3,
+                            fill: true,
+                            lineTension: 0.4,
+                            pointRadius: 5,
+                            pointHoverRadius: 7,
+                            pointBackgroundColor: 'rgba(61, 104, 255, 1)',
+                            pointBorderColor: '#fff',
+                            pointBorderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        legend: {
+                            display: false
+                        },
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true,
+                                    stepSize: 2
+                                },
+                                gridLines: {
+                                    color: 'rgba(0, 0, 0, 0.05)'
+                                }
+                            }],
+                            xAxes: [{
+                                gridLines: {
+                                    display: false
+                                }
+                            }]
+                        }
+                    }
+                });
+            }
+
+            window.chartsInitialized = true;
+        }
+    </script>
+</body>
+</html>
+

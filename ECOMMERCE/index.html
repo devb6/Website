@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G Laravel Mart - Preview</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Alpine.js -->
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts - Karla -->
+    <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+    
+    <style>
+        .font-family-karla {
+            font-family: 'Karla', sans-serif;
+        }
+        
+        /* Orange theme colors */
+        .text-orange-primary {
+            color: #FF6B35;
+        }
+        
+        .bg-orange-primary {
+            background-color: #FF6B35;
+        }
+        
+        .border-orange-primary {
+            border-color: #FF6B35;
+        }
+        
+        .from-orange-primary {
+            --tw-gradient-from: #FF6B35;
+        }
+        
+        .to-orange-dark {
+            --tw-gradient-to: #EA4C2A;
+        }
+        
+        .hover\:bg-orange-dark:hover {
+            background-color: #EA4C2A;
+        }
+        
+        .hover\:text-orange-primary:hover {
+            color: #FF6B35;
+        }
+        
+        body {
+            font-family: 'Karla', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-family-karla flex flex-col min-h-screen">
+    <div class="flex flex-col min-h-screen">
+        <!-- Navigation -->
+        <nav class="bg-white shadow-lg flex-shrink-0" x-data="{ mobileMenuOpen: false }">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16 sm:h-20">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <a href="#" class="flex items-center">
+                                <span class="text-lg sm:text-xl font-bold text-orange-primary">G Laravel Mart</span>
+                            </a>
+                        </div>
+                        <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                            <a href="#" class="border-orange-primary text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                                Beranda
+                            </a>
+                            <a href="#" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                                Produk
+                            </a>
+                        </div>
+                    </div>
+                    <div class="hidden sm:flex sm:items-center sm:space-x-4">
+                        <a href="#" class="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium relative">
+                            <i class="fas fa-shopping-cart text-xl"></i>
+                            <span class="absolute -top-1 -right-1 bg-orange-primary text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                        </a>
+                        <a href="#" class="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium">Login</a>
+                        <a href="#" class="bg-orange-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-dark">Daftar</a>
+                    </div>
+                    <!-- Mobile menu button -->
+                    <div class="sm:hidden flex items-center space-x-2">
+                        <a href="#" class="text-gray-500 hover:text-gray-700 px-2 py-2 rounded-md relative">
+                            <i class="fas fa-shopping-cart text-lg"></i>
+                            <span class="absolute -top-1 -right-1 bg-orange-primary text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                        </a>
+                        <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700">
+                            <i x-show="!mobileMenuOpen" class="fas fa-bars text-xl"></i>
+                            <i x-show="mobileMenuOpen" class="fas fa-times text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- Mobile menu -->
+                <div x-show="mobileMenuOpen" x-transition class="sm:hidden border-t border-gray-200 py-4">
+                    <div class="space-y-2">
+                        <a href="#" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-orange-primary hover:bg-gray-50 rounded-md">Beranda</a>
+                        <a href="#" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-orange-primary hover:bg-gray-50 rounded-md">Produk</a>
+                        <a href="#" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-orange-primary hover:bg-gray-50 rounded-md">Login</a>
+                        <a href="#" class="block px-3 py-2 text-base font-medium text-white bg-orange-primary hover:bg-orange-dark rounded-md text-center">Daftar</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="flex-grow">
+            <div class="max-w-7xl mx-auto py-4 sm:py-6 px-4 sm:px-6 lg:px-8">
+                <!-- Hero Section -->
+                <div class="bg-gradient-to-r from-orange-primary to-orange-dark text-white rounded-lg shadow-lg p-6 sm:p-12 mb-6 sm:mb-8" style="background: linear-gradient(to right, #FF6B35, #EA4C2A);">
+                    <div class="text-center">
+                        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4">Selamat Datang di G Laravel Mart</h1>
+                        <p class="text-base sm:text-lg lg:text-xl mb-4 sm:mb-6">Temukan produk terbaik dengan harga terbaik</p>
+                        <a href="#" class="bg-white text-orange-primary px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold hover:bg-gray-100 transition text-sm sm:text-base inline-block">
+                            Belanja Sekarang
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Categories Section -->
+                <div class="mb-8 sm:mb-12">
+                    <h2 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Kategori</h2>
+                    <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3 sm:gap-4">
+                        <a href="#" class="bg-white rounded-lg shadow p-3 sm:p-4 text-center hover:shadow-lg transition">
+                            <div class="mb-2">
+                                <div class="w-12 h-12 sm:w-16 sm:h-16 mx-auto bg-orange-primary rounded flex items-center justify-center">
+                                    <i class="fas fa-mobile-alt text-white text-xl"></i>
+                                </div>
+                            </div>
+                            <p class="text-xs sm:text-sm font-semibold">Elektronik</p>
+                        </a>
+                        <a href="#" class="bg-white rounded-lg shadow p-3 sm:p-4 text-center hover:shadow-lg transition">
+                            <div class="mb-2">
+                                <div class="w-12 h-12 sm:w-16 sm:h-16 mx-auto bg-orange-primary rounded flex items-center justify-center">
+                                    <i class="fas fa-tshirt text-white text-xl"></i>
+                                </div>
+                            </div>
+                            <p class="text-xs sm:text-sm font-semibold">Fashion</p>
+                        </a>
+                        <a href="#" class="bg-white rounded-lg shadow p-3 sm:p-4 text-center hover:shadow-lg transition">
+                            <div class="mb-2">
+                                <div class="w-12 h-12 sm:w-16 sm:h-16 mx-auto bg-orange-primary rounded flex items-center justify-center">
+                                    <i class="fas fa-home text-white text-xl"></i>
+                                </div>
+                            </div>
+                            <p class="text-xs sm:text-sm font-semibold">Rumah</p>
+                        </a>
+                        <a href="#" class="bg-white rounded-lg shadow p-3 sm:p-4 text-center hover:shadow-lg transition">
+                            <div class="mb-2">
+                                <div class="w-12 h-12 sm:w-16 sm:h-16 mx-auto bg-orange-primary rounded flex items-center justify-center">
+                                    <i class="fas fa-laptop text-white text-xl"></i>
+                                </div>
+                            </div>
+                            <p class="text-xs sm:text-sm font-semibold">Komputer</p>
+                        </a>
+                        <a href="#" class="bg-white rounded-lg shadow p-3 sm:p-4 text-center hover:shadow-lg transition">
+                            <div class="mb-2">
+                                <div class="w-12 h-12 sm:w-16 sm:h-16 mx-auto bg-orange-primary rounded flex items-center justify-center">
+                                    <i class="fas fa-gamepad text-white text-xl"></i>
+                                </div>
+                            </div>
+                            <p class="text-xs sm:text-sm font-semibold">Gaming</p>
+                        </a>
+                        <a href="#" class="bg-white rounded-lg shadow p-3 sm:p-4 text-center hover:shadow-lg transition">
+                            <div class="mb-2">
+                                <div class="w-12 h-12 sm:w-16 sm:h-16 mx-auto bg-orange-primary rounded flex items-center justify-center">
+                                    <i class="fas fa-dumbbell text-white text-xl"></i>
+                                </div>
+                            </div>
+                            <p class="text-xs sm:text-sm font-semibold">Olahraga</p>
+                        </a>
+                        <a href="#" class="bg-white rounded-lg shadow p-3 sm:p-4 text-center hover:shadow-lg transition">
+                            <div class="mb-2">
+                                <div class="w-12 h-12 sm:w-16 sm:h-16 mx-auto bg-orange-primary rounded flex items-center justify-center">
+                                    <i class="fas fa-book text-white text-xl"></i>
+                                </div>
+                            </div>
+                            <p class="text-xs sm:text-sm font-semibold">Buku</p>
+                        </a>
+                        <a href="#" class="bg-white rounded-lg shadow p-3 sm:p-4 text-center hover:shadow-lg transition">
+                            <div class="mb-2">
+                                <div class="w-12 h-12 sm:w-16 sm:h-16 mx-auto bg-orange-primary rounded flex items-center justify-center">
+                                    <i class="fas fa-baby text-white text-xl"></i>
+                                </div>
+                            </div>
+                            <p class="text-xs sm:text-sm font-semibold">Bayi</p>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Featured Products Section -->
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Produk Unggulan</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                        <!-- Product 1 -->
+                        <div class="bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition">
+                            <a href="#">
+                                <div class="w-full h-48 bg-gradient-to-br from-orange-primary to-orange-dark flex items-center justify-center">
+                                    <i class="fas fa-mobile-alt text-white text-6xl"></i>
+                                </div>
+                            </a>
+                            <div class="p-4">
+                                <a href="#" class="text-lg font-semibold text-gray-900 hover:text-orange-primary">
+                                    Smartphone Premium
+                                </a>
+                                <p class="text-orange-primary font-bold mt-2">Rp 5.999.000</p>
+                                <p class="text-sm text-gray-500 mt-1">Stok: 15</p>
+                                <button class="w-full bg-orange-primary text-white px-4 py-2 rounded hover:bg-orange-dark transition mt-4">
+                                    Tambah ke Keranjang
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Product 2 -->
+                        <div class="bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition">
+                            <a href="#">
+                                <div class="w-full h-48 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                                    <i class="fas fa-laptop text-white text-6xl"></i>
+                                </div>
+                            </a>
+                            <div class="p-4">
+                                <a href="#" class="text-lg font-semibold text-gray-900 hover:text-orange-primary">
+                                    Laptop Gaming
+                                </a>
+                                <p class="text-orange-primary font-bold mt-2">Rp 12.999.000</p>
+                                <p class="text-sm text-gray-500 mt-1">Stok: 8</p>
+                                <button class="w-full bg-orange-primary text-white px-4 py-2 rounded hover:bg-orange-dark transition mt-4">
+                                    Tambah ke Keranjang
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Product 3 -->
+                        <div class="bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition">
+                            <a href="#">
+                                <div class="w-full h-48 bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center">
+                                    <i class="fas fa-headphones text-white text-6xl"></i>
+                                </div>
+                            </a>
+                            <div class="p-4">
+                                <a href="#" class="text-lg font-semibold text-gray-900 hover:text-orange-primary">
+                                    Headphone Wireless
+                                </a>
+                                <p class="text-orange-primary font-bold mt-2">Rp 899.000</p>
+                                <p class="text-sm text-gray-500 mt-1">Stok: 25</p>
+                                <button class="w-full bg-orange-primary text-white px-4 py-2 rounded hover:bg-orange-dark transition mt-4">
+                                    Tambah ke Keranjang
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Product 4 -->
+                        <div class="bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition">
+                            <a href="#">
+                                <div class="w-full h-48 bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
+                                    <i class="fas fa-camera text-white text-6xl"></i>
+                                </div>
+                            </a>
+                            <div class="p-4">
+                                <a href="#" class="text-lg font-semibold text-gray-900 hover:text-orange-primary">
+                                    Kamera DSLR
+                                </a>
+                                <p class="text-orange-primary font-bold mt-2">Rp 8.499.000</p>
+                                <p class="text-sm text-gray-500 mt-1">Stok: 12</p>
+                                <button class="w-full bg-orange-primary text-white px-4 py-2 rounded hover:bg-orange-dark transition mt-4">
+                                    Tambah ke Keranjang
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Product 5 -->
+                        <div class="bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition">
+                            <a href="#">
+                                <div class="w-full h-48 bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center">
+                                    <i class="fas fa-watch text-white text-6xl"></i>
+                                </div>
+                            </a>
+                            <div class="p-4">
+                                <a href="#" class="text-lg font-semibold text-gray-900 hover:text-orange-primary">
+                                    Smartwatch
+                                </a>
+                                <p class="text-orange-primary font-bold mt-2">Rp 2.499.000</p>
+                                <p class="text-sm text-gray-500 mt-1">Stok: 30</p>
+                                <button class="w-full bg-orange-primary text-white px-4 py-2 rounded hover:bg-orange-dark transition mt-4">
+                                    Tambah ke Keranjang
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Product 6 -->
+                        <div class="bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition">
+                            <a href="#">
+                                <div class="w-full h-48 bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center">
+                                    <i class="fas fa-tablet text-white text-6xl"></i>
+                                </div>
+                            </a>
+                            <div class="p-4">
+                                <a href="#" class="text-lg font-semibold text-gray-900 hover:text-orange-primary">
+                                    Tablet Pro
+                                </a>
+                                <p class="text-orange-primary font-bold mt-2">Rp 4.999.000</p>
+                                <p class="text-sm text-gray-500 mt-1">Stok: 18</p>
+                                <button class="w-full bg-orange-primary text-white px-4 py-2 rounded hover:bg-orange-dark transition mt-4">
+                                    Tambah ke Keranjang
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Product 7 -->
+                        <div class="bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition">
+                            <a href="#">
+                                <div class="w-full h-48 bg-gradient-to-br from-indigo-400 to-indigo-600 flex items-center justify-center">
+                                    <i class="fas fa-speaker text-white text-6xl"></i>
+                                </div>
+                            </a>
+                            <div class="p-4">
+                                <a href="#" class="text-lg font-semibold text-gray-900 hover:text-orange-primary">
+                                    Speaker Bluetooth
+                                </a>
+                                <p class="text-orange-primary font-bold mt-2">Rp 1.299.000</p>
+                                <p class="text-sm text-gray-500 mt-1">Stok: 22</p>
+                                <button class="w-full bg-orange-primary text-white px-4 py-2 rounded hover:bg-orange-dark transition mt-4">
+                                    Tambah ke Keranjang
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Product 8 -->
+                        <div class="bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition">
+                            <a href="#">
+                                <div class="w-full h-48 bg-gradient-to-br from-teal-400 to-teal-600 flex items-center justify-center">
+                                    <i class="fas fa-keyboard text-white text-6xl"></i>
+                                </div>
+                            </a>
+                            <div class="p-4">
+                                <a href="#" class="text-lg font-semibold text-gray-900 hover:text-orange-primary">
+                                    Keyboard Mechanical
+                                </a>
+                                <p class="text-orange-primary font-bold mt-2">Rp 1.599.000</p>
+                                <p class="text-sm text-gray-500 mt-1">Stok: 20</p>
+                                <button class="w-full bg-orange-primary text-white px-4 py-2 rounded hover:bg-orange-dark transition mt-4">
+                                    Tambah ke Keranjang
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-8">
+                        <a href="#" class="text-orange-primary hover:text-orange-dark font-semibold">
+                            Lihat Semua Produk →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gray-800 text-white mt-auto flex-shrink-0">
+            <div class="max-w-7xl mx-auto py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
+                    <div>
+                        <h3 class="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Tentang Kami</h3>
+                        <p class="text-gray-400 text-sm sm:text-base">G Laravel Mart adalah platform jual beli online terpercaya.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Link Cepat</h3>
+                        <ul class="space-y-2 text-gray-400 text-sm sm:text-base">
+                            <li><a href="#" class="hover:text-white transition">Beranda</a></li>
+                            <li><a href="#" class="hover:text-white transition">Produk</a></li>
+                            <li><a href="#" class="hover:text-white transition">Kontak</a></li>
+                        </ul>
+                    </div>
+                    <div class="sm:col-span-2 md:col-span-1">
+                        <h3 class="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Kontak</h3>
+                        <p class="text-gray-400 text-sm sm:text-base">Email: info@glaravelmart.com</p>
+                        <p class="text-gray-400 text-sm sm:text-base">Phone: +62 123 456 789</p>
+                    </div>
+                </div>
+                <div class="border-t border-gray-700 mt-6 sm:mt-8 pt-6 sm:pt-8 text-center text-gray-400 text-sm sm:text-base">
+                    <p>&copy; 2024 G Laravel Mart. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
+
