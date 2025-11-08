@@ -91,7 +91,7 @@
       background: var(--cream-bg) !important;
     }
 
-    #lottie-technology, #lottie-webdesign {
+    #lottie-technology, #lottie-webdesign, #lottie-contentmanager {
       width: 100%;
       max-width: 100%;
       height: auto;
@@ -99,7 +99,7 @@
     }
 
     @media (max-width: 768px) {
-      #lottie-technology, #lottie-webdesign {
+      #lottie-technology, #lottie-webdesign, #lottie-contentmanager {
         min-height: 300px;
       }
     }
@@ -258,7 +258,7 @@
 		<div class="row no-gutters">
 			<div class="col-lg-6 align-self-center">
 				<div class="service-thumb left" data-aos="fade-right">
-					<img class="img-fluid" src="../../small-apps/images/feature/iphone-ipad.jpg" alt="Keunggulan">
+					<div id="lottie-contentmanager"></div>
 				</div>
 			</div>
 			<div class="col-lg-5 mr-auto align-self-center">
@@ -593,6 +593,15 @@
           loop: true,
           autoplay: true,
           path: '../../small-apps/web design Lottie animation.json'
+        });
+        
+        // Content Manager animation
+        lottie.loadAnimation({
+          container: document.getElementById('lottie-contentmanager'),
+          renderer: 'svg',
+          loop: true,
+          autoplay: true,
+          path: '../../small-apps/Content Manager.json'
         });
       }
     });
