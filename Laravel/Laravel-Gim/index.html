@@ -302,6 +302,7 @@
         font-size: 0.85rem !important;
       }
 
+
       .img-fluid {
         max-width: 100% !important;
         height: auto !important;
@@ -521,6 +522,155 @@
 
     iframe {
       max-width: 100%;
+    }
+
+    footer {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+      color: #fff;
+      margin-top: 4rem;
+    }
+
+    .footer-main {
+      padding: 4rem 0 2rem;
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    }
+
+    .footer-main .block p {
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-logo {
+      max-height: 45px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      transition: transform 0.3s ease;
+    }
+
+    .footer-logo:hover {
+      transform: scale(1.05);
+    }
+
+    .footer-main .block-2 h6 {
+      color: #fff;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+      position: relative;
+      padding-bottom: 0.75rem;
+    }
+
+    .footer-main .block-2 h6::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: var(--primary-color);
+      border-radius: 2px;
+    }
+
+    .footer-main .block-2 ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-main .block-2 ul li {
+      margin-bottom: 0.75rem;
+      color: rgba(255, 255, 255, 0.7);
+      transition: all 0.3s ease;
+    }
+
+    .footer-main .block-2 ul li a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .footer-main .block-2 ul li a:hover {
+      color: var(--primary-color);
+      transform: translateX(5px);
+      padding-left: 5px;
+    }
+
+    .footer-main .block-2 ul li:not(:has(a)) {
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.8;
+    }
+
+    .social-icon {
+      margin-top: 1.5rem;
+    }
+
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      transition: all 0.3s ease;
+      margin: 0 8px 8px 0;
+      text-decoration: none;
+      font-size: 1.1rem;
+    }
+
+    .social-link:hover {
+      background: var(--primary-color);
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 8px 20px rgba(230, 126, 34, 0.4);
+      color: #fff;
+    }
+
+    .social-link i {
+      transition: transform 0.3s ease;
+    }
+
+    .social-link:hover i {
+      transform: scale(1.2);
+    }
+
+    footer .bg-dark {
+      background: #0a0a0a !important;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    footer .bg-dark small {
+      color: rgba(255, 255, 255, 0.6) !important;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .footer-main {
+        padding: 3rem 0 1.5rem;
+      }
+
+      .footer-main .block-2 {
+        margin-bottom: 2.5rem;
+        text-align: center;
+      }
+
+      .footer-main .block-2 h6::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .social-link {
+        width: 38px;
+        height: 38px;
+        margin: 0 5px 8px 0;
+      }
+
+      .footer-main .block {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
     }
 
     .portfolio-section {
@@ -1165,20 +1315,20 @@
       <div class="row">
         <div class="col-lg-4 col-md-12 m-md-auto align-self-center">
           <div class="block">
-            <a href="index.html"><img src="../../small-apps/images/logo-new.png" alt="footer-logo" style="max-height: 40px; width: auto;"></a>
+            <a href="index.html"><img src="../../small-apps/images/logo-new.png" alt="footer-logo" class="footer-logo"></a>
             <p class="mt-3">Jasa pembuatan website profesional dan joki website untuk skripsi. Solusi terpercaya untuk kebutuhan website Anda.</p>
             <ul class="social-icon list-inline">
               <li class="list-inline-item">
-                <a href="#"><i class="ti-facebook"></i></a>
+                <a href="#" class="social-link" aria-label="Facebook"><i class="ti-facebook"></i></a>
               </li>
               <li class="list-inline-item">
-                <a href="#"><i class="ti-twitter"></i></a>
+                <a href="#" class="social-link" aria-label="Twitter"><i class="ti-twitter"></i></a>
               </li>
               <li class="list-inline-item">
-                <a href="#"><i class="ti-instagram"></i></a>
+                <a href="#" class="social-link" aria-label="Instagram"><i class="ti-instagram"></i></a>
               </li>
               <li class="list-inline-item">
-                <a href="#"><i class="ti-linkedin"></i></a>
+                <a href="#" class="social-link" aria-label="LinkedIn"><i class="ti-linkedin"></i></a>
               </li>
             </ul>
           </div>
@@ -1190,7 +1340,7 @@
               <li><a href="#layanan">Pembuatan Website</a></li>
               <li><a href="#layanan">Joki Skripsi</a></li>
               <li><a href="#layanan">Joki Tugas Akhir</a></li>
-              <li><a href="#kontak">Konsultasi</a></li>
+              <li><a href="https://wa.me/628975846661" target="_blank">Konsultasi</a></li>
             </ul>
           </div>
         </div>
@@ -1201,7 +1351,7 @@
               <li><a href="#home">Tentang Kami</a></li>
               <li><a href="#keunggulan">Keunggulan</a></li>
               <li><a href="#portfolio">Portfolio</a></li>
-              <li><a href="#kontak">Kontak</a></li>
+              <li><a href="https://wa.me/628975846661" target="_blank">Kontak</a></li>
             </ul>
           </div>
         </div>
@@ -1210,7 +1360,7 @@
             <h6>Bantuan</h6>
             <ul>
               <li><a href="../../small-apps/FAQ.html">FAQ</a></li>
-              <li><a href="#kontak">Hubungi Kami</a></li>
+              <li><a href="https://wa.me/628975846661" target="_blank">Hubungi Kami</a></li>
               <li><a href="../../small-apps/privacy-policy.html">Kebijakan Privasi</a></li>
             </ul>
           </div>
@@ -1229,7 +1379,7 @@
     </div>
   </div>
   <div class="text-center bg-dark py-4">
-    <small class="text-secondary">Copyright &copy; <script>document.write(new Date().getFullYear())</script>. Jasa Pembuatan Website & Joki Website. All Rights Reserved.</small>
+    <small class="text-secondary">Copyright © <script>document.write(new Date().getFullYear())</script>2025. Jasa Pembuatan Website &amp; Joki Website. All Rights Reserved.</small>
   </div>
 </footer>
 
