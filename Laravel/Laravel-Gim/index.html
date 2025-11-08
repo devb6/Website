@@ -923,69 +923,6 @@
 </section>
 
 <section class="section" id="kontak">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12 text-center mb-5">
-				<h2>Hubungi Kami</h2>
-				<p>Konsultasikan kebutuhan website Anda dengan kami</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-8 mx-auto">
-				<div class="bg-white rounded shadow p-5">
-					<form class="row">
-						<div class="col-md-6 mb-4">
-							<label for="name">Nama Lengkap</label>
-							<input type="text" class="form-control" id="name" placeholder="Masukkan nama Anda" required>
-						</div>
-						<div class="col-md-6 mb-4">
-							<label for="email">Email</label>
-							<input type="email" class="form-control" id="email" placeholder="nama@email.com" required>
-						</div>
-						<div class="col-md-6 mb-4">
-							<label for="phone">No. WhatsApp</label>
-							<input type="tel" class="form-control" id="phone" placeholder="08xxxxxxxxxx" required>
-						</div>
-						<div class="col-md-6 mb-4">
-							<label for="service">Jenis Layanan</label>
-							<select class="form-control" id="service" required>
-								<option value="">Pilih Layanan</option>
-								<option value="pembuatan-website">Pembuatan Website</option>
-								<option value="joki-skripsi">Joki Website Skripsi</option>
-								<option value="joki-tugas">Joki Website Tugas Akhir</option>
-								<option value="konsultasi">Konsultasi</option>
-								<option value="lainnya">Lainnya</option>
-							</select>
-						</div>
-						<div class="col-12 mb-4">
-							<label for="message">Pesan</label>
-							<textarea class="form-control" id="message" rows="5" placeholder="Ceritakan kebutuhan project Anda..." required></textarea>
-						</div>
-						<div class="col-12 text-center">
-							<button type="submit" class="btn btn-main-md">Kirim Pesan</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-		<div class="row mt-5">
-			<div class="col-md-4 text-center mb-4">
-				<i class="ti-email text-primary h2"></i>
-				<h5 class="mt-3">Email</h5>
-				<p>gimnasirwandi@gmail.com</p>
-			</div>
-			<div class="col-md-4 text-center mb-4">
-				<i class="ti-mobile text-primary h2"></i>
-				<h5 class="mt-3">WhatsApp</h5>
-				<p>+62 897-5846-661</p>
-			</div>
-			<div class="col-md-4 text-center mb-4">
-				<i class="ti-time text-primary h2"></i>
-				<h5 class="mt-3">Jam Operasional</h5>
-				<p>Senin - Minggu: 09:00 - 21:00 WIB</p>
-			</div>
-		</div>
-	</div>
 </section>
 
 <footer>
@@ -1092,45 +1029,6 @@
       });
     });
     
-    document.querySelector('form').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      
-      const formData = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        phone: document.getElementById('phone').value,
-        service: document.getElementById('service').value,
-        message: document.getElementById('message').value
-      };
-
-      const submitButton = this.querySelector('button[type="submit"]');
-      const originalText = submitButton.textContent;
-      submitButton.disabled = true;
-      submitButton.textContent = 'Mengirim...';
-
-      try {
-        const whatsappNumber = '628975846661';
-        const whatsappMessage = `Halo, saya tertarik dengan layanan Anda.\n\n` +
-          `Nama: ${formData.name}\n` +
-          `Email: ${formData.email}\n` +
-          `No. WhatsApp: ${formData.phone}\n` +
-          `Jenis Layanan: ${formData.service}\n` +
-          `Pesan: ${formData.message}`;
-        
-        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
-        
-        window.open(whatsappUrl, '_blank');
-        
-        alert('Terima kasih! Pesan Anda telah terkirim. Kami akan menghubungi Anda segera.');
-        this.reset();
-      } catch (error) {
-        console.error('Error sending form:', error);
-        alert('Terjadi kesalahan. Silakan coba lagi atau hubungi kami langsung via WhatsApp.');
-      } finally {
-        submitButton.disabled = false;
-        submitButton.textContent = originalText;
-      }
-    });
 
     function initLottieAnimations() {
       if (typeof lottie === 'undefined' || typeof lottie.loadAnimation === 'undefined') {
