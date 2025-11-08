@@ -249,7 +249,23 @@
 
       /* Kurangi padding-top untuk section dengan pt-0 di mobile */
       .section.pt-0 {
-        padding-top: 2rem !important;
+        padding-top: 0.5rem !important;
+      }
+
+      /* Kurangi margin-bottom section card agar lebih rapat dengan section berikutnya */
+      .section.pt-0.position-relative {
+        margin-bottom: -1rem !important;
+      }
+
+      /* Pastikan section berikutnya tidak terlalu dekat, tapi cukup untuk scroll anchor */
+      .section.pt-0 + .section {
+        padding-top: 1.5rem !important;
+      }
+
+      /* Pastikan section dengan id layanan memiliki offset yang cukup untuk scroll anchor */
+      #layanan {
+        scroll-margin-top: 80px;
+        padding-top: 1.5rem !important;
       }
 
       .container {
@@ -427,7 +443,23 @@
 
       /* Kurangi padding-top untuk section dengan pt-0 di mobile kecil */
       .section.pt-0 {
-        padding-top: 1.5rem !important;
+        padding-top: 0.5rem !important;
+      }
+
+      /* Kurangi margin-bottom section card agar lebih rapat dengan section berikutnya */
+      .section.pt-0.position-relative {
+        margin-bottom: -1rem !important;
+      }
+
+      /* Pastikan section berikutnya tidak terlalu dekat, tapi cukup untuk scroll anchor */
+      .section.pt-0 + .section {
+        padding-top: 1rem !important;
+      }
+
+      /* Pastikan section dengan id layanan memiliki offset yang cukup untuk scroll anchor */
+      #layanan {
+        scroll-margin-top: 70px;
+        padding-top: 1rem !important;
       }
 
       .gradient-banner {
