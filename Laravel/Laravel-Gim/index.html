@@ -91,23 +91,50 @@
       background: var(--cream-bg) !important;
     }
 
-    #lottie-technology, #lottie-webdesign, #lottie-contentmanager, #lottie-mobile {
+    #lottie-technology, #lottie-webdesign, #lottie-contentmanager {
       width: 100%;
       max-width: 100%;
       height: auto;
       min-height: 400px;
     }
-    
-    #lottie-mobile {
+
+    /* Hero Lottie specific styling */
+    #lottie-hero {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      min-height: 300px;
       display: block;
       margin: 0 auto;
     }
 
+    .gradient-banner .image-content {
+      display: block;
+      width: 100%;
+      padding: 20px 0;
+      height: auto;
+    }
+
+    .gradient-banner .image-content svg {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
     /* Mobile Responsive Styles */
     @media (max-width: 768px) {
-      #lottie-technology, #lottie-webdesign, #lottie-contentmanager, #lottie-mobile {
+      #lottie-technology, #lottie-webdesign, #lottie-contentmanager {
         min-height: 250px;
         max-height: 400px;
+      }
+
+      #lottie-hero {
+        min-height: 200px;
+        max-height: 350px;
+      }
+
+      .gradient-banner .image-content {
+        padding: 10px 0;
       }
 
       /* Typography */
@@ -291,6 +318,15 @@
       #lottie-technology, #lottie-webdesign, #lottie-contentmanager {
         min-height: 200px;
         max-height: 300px;
+      }
+
+      #lottie-hero {
+        min-height: 150px;
+        max-height: 250px;
+      }
+
+      .gradient-banner .image-content {
+        padding: 5px 0;
       }
 
       h1 {
@@ -617,7 +653,9 @@
 				<a href="#layanan" class="btn btn-main-md">Lihat Layanan</a>
 			</div>
 			<div class="col-md-6 text-center order-1 order-md-2">
-				<div id="lottie-mobile" style="width: 100%; min-height: 400px;"></div>
+				<div class="image-content" data-aos="fade-left">
+					<div id="lottie-hero" style="min-height: 300px;"></div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -1081,110 +1119,92 @@
     });
 
     // Load Lottie Animations
-    function loadLottieAnimations() {
-      // Wait for Lottie library to be available
-      if (typeof lottie === 'undefined') {
-        setTimeout(loadLottieAnimations, 100);
+    function initLottieAnimations() {
+      // Wait for Lottie library to be fully loaded
+      if (typeof lottie === 'undefined' || typeof lottie.loadAnimation === 'undefined') {
+        console.warn('Lottie library not ready, retrying...');
+        setTimeout(initLottieAnimations, 100);
         return;
       }
-      
-      // Technology animation
-      var techContainer = document.getElementById('lottie-technology');
-      if (techContainer) {
-        lottie.loadAnimation({
-          container: techContainer,
-          renderer: 'svg',
-          loop: true,
-          autoplay: true,
-          path: '../../small-apps/Technology.json'
-        });
-      }
-      
-      // Web Design animation
-      var webdesignContainer = document.getElementById('lottie-webdesign');
-      if (webdesignContainer) {
-        lottie.loadAnimation({
-          container: webdesignContainer,
-          renderer: 'svg',
-          loop: true,
-          autoplay: true,
-          path: '../../small-apps/web design Lottie animation.json'
-        });
-      }
-      
-      // Content Manager animation
-      var contentContainer = document.getElementById('lottie-contentmanager');
-      if (contentContainer) {
-        lottie.loadAnimation({
-          container: contentContainer,
-          renderer: 'svg',
-          loop: true,
-          autoplay: true,
-          path: '../../small-apps/Content Manager.json'
-        });
-      }
-      
-      // Mobile/Thynks animation - THIS IS THE ONE WE'RE ADDING
-      var mobileContainer = document.getElementById('lottie-mobile');
-      if (mobileContainer) {
-        console.log('🔄 Loading Lottie animation for mobile container...');
+
+      console.log('Lottie library loaded, initializing animations...');
+
+      // Helper function to load animation with error handling
+      function loadLottieAnimation(containerId, animationPath) {
+        const container = document.getElementById(containerId);
+        if (!container) {
+          console.error('Container not found:', containerId);
+          return null;
+        }
+
+        // Clear container first
+        container.innerHTML = '';
+
         try {
-          var mobileAnimation = lottie.loadAnimation({
-            container: mobileContainer,
+          console.log('Loading animation:', containerId, 'from:', animationPath);
+          
+          const animation = lottie.loadAnimation({
+            container: container,
             renderer: 'svg',
             loop: true,
             autoplay: true,
-            path: '../../small-apps/Thynks.json'
+            path: animationPath
           });
-          
-          mobileAnimation.addEventListener('data_ready', function() {
-            console.log('✅ Lottie mobile animation loaded successfully!');
-          });
-          
-          mobileAnimation.addEventListener('data_failed', function() {
-            console.error('❌ Failed to load from ../../small-apps/Thynks.json, trying alternative...');
-            // Try alternative path
-            try {
-              var altAnimation = lottie.loadAnimation({
-                container: mobileContainer,
-                renderer: 'svg',
-                loop: true,
-                autoplay: true,
-                path: '../../Lottie Technology Thynks.json'
-              });
-              altAnimation.addEventListener('data_ready', function() {
-                console.log('✅ Lottie animation loaded from alternative path!');
-              });
-            } catch (e) {
-              console.error('❌ All paths failed:', e);
+
+          animation.addEventListener('data_failed', function(e) {
+            console.error('Failed to load animation:', containerId, animationPath, e);
+            // Show fallback message
+            if (containerId === 'lottie-hero') {
+              container.innerHTML = '<p style="color: #fff; padding: 20px; text-align: center;">Animation loading...</p>';
+            } else {
+              container.innerHTML = '<p style="padding: 20px; text-align: center; color: #666;">Animation unavailable</p>';
             }
           });
+
+          animation.addEventListener('data_ready', function() {
+            console.log('Animation data ready:', containerId, animationPath);
+          });
+
+          animation.addEventListener('DOMLoaded', function() {
+            console.log('Animation DOM loaded:', containerId, animationPath);
+          });
+
+          animation.addEventListener('loaded_images', function() {
+            console.log('Animation images loaded:', containerId);
+          });
+
+          return animation;
         } catch (error) {
-          console.error('❌ Error loading Lottie animation:', error);
+          console.error('Error loading animation:', containerId, animationPath, error);
+          if (containerId === 'lottie-hero') {
+            container.innerHTML = '<p style="color: #fff; padding: 20px; text-align: center;">Animation unavailable</p>';
+          } else {
+            container.innerHTML = '<p style="padding: 20px; text-align: center; color: #666;">Animation unavailable</p>';
+          }
+          return null;
         }
-      } else {
-        console.error('❌ lottie-mobile container not found in DOM');
       }
+
+      // Hero animation (Thynks.json)
+      loadLottieAnimation('lottie-hero', '../../small-apps/Thynks.json');
+      
+      // Technology animation
+      loadLottieAnimation('lottie-technology', '../../small-apps/Technology.json');
+      
+      // Web Design animation
+      loadLottieAnimation('lottie-webdesign', '../../small-apps/web design Lottie animation.json');
+      
+      // Content Manager animation
+      loadLottieAnimation('lottie-contentmanager', '../../small-apps/Content Manager.json');
     }
-    
-    // Wait for both DOM and Lottie library to be ready
-    function initLottieAnimations() {
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function() {
-          setTimeout(loadLottieAnimations, 500);
-        });
-      } else {
-        setTimeout(loadLottieAnimations, 500);
-      }
+
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initLottieAnimations);
+    } else {
+      // DOM is already ready
+      initLottieAnimations();
     }
-    
-    // Also try on window load as backup
-    window.addEventListener('load', function() {
-      setTimeout(loadLottieAnimations, 1000);
-    });
-    
-    // Initialize
-    initLottieAnimations();
 
       // Initialize Portfolio Slider
       if (typeof jQuery !== 'undefined' && jQuery.fn.slick) {
