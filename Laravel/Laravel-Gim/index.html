@@ -348,6 +348,9 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       background: #fff;
       margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
     }
 
     .portfolio-card:hover {
@@ -358,7 +361,7 @@
     .portfolio-image {
       position: relative;
       overflow: hidden;
-      height: 300px;
+      height: 250px;
     }
 
     .portfolio-image img {
@@ -369,56 +372,40 @@
     }
 
     .portfolio-card:hover .portfolio-image img {
-      transform: scale(1.1);
+      transform: scale(1.05);
     }
 
-    .portfolio-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(to bottom, rgba(230, 126, 34, 0.9), rgba(211, 84, 0, 0.95));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.3s ease;
+    .portfolio-info {
       padding: 20px;
-    }
-
-    .portfolio-card:hover .portfolio-overlay {
-      opacity: 1;
-    }
-
-    .portfolio-content {
       text-align: center;
-      color: #fff;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
-    .portfolio-content h4 {
-      font-size: 1.5rem;
+    .portfolio-info h4 {
+      font-size: 1.3rem;
       font-weight: bold;
       margin-bottom: 10px;
-      color: #fff;
+      color: var(--text-dark);
     }
 
-    .portfolio-content p {
-      font-size: 0.95rem;
+    .portfolio-info p {
+      font-size: 0.9rem;
       margin-bottom: 15px;
-      color: rgba(255, 255, 255, 0.95);
+      color: #666;
       line-height: 1.6;
     }
 
     .portfolio-tag {
       display: inline-block;
       padding: 5px 15px;
-      background: rgba(255, 255, 255, 0.2);
+      background: var(--primary-color);
       border-radius: 20px;
       font-size: 0.85rem;
       font-weight: 500;
       color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.3);
     }
 
     /* Portfolio Slider */
@@ -462,14 +449,18 @@
 
     @media (max-width: 768px) {
       .portfolio-image {
-        height: 250px;
+        height: 200px;
       }
 
-      .portfolio-content h4 {
-        font-size: 1.2rem;
+      .portfolio-info {
+        padding: 15px;
       }
 
-      .portfolio-content p {
+      .portfolio-info h4 {
+        font-size: 1.1rem;
+      }
+
+      .portfolio-info p {
         font-size: 0.85rem;
       }
 
@@ -489,15 +480,20 @@
 
     @media (max-width: 576px) {
       .portfolio-image {
-        height: 200px;
+        height: 180px;
       }
 
-      .portfolio-content h4 {
-        font-size: 1.1rem;
+      .portfolio-info {
+        padding: 12px;
       }
 
-      .portfolio-content p {
+      .portfolio-info h4 {
+        font-size: 1rem;
+      }
+
+      .portfolio-info p {
         font-size: 0.8rem;
+        margin-bottom: 10px;
       }
 
       .portfolio-slider .slick-prev,
@@ -718,13 +714,11 @@
 						<div class="portfolio-card shadow">
 							<div class="portfolio-image">
 								<img src="../../small-apps/images/feature/feature-new-01.jpg" alt="Web E-Commerce" class="img-fluid">
-								<div class="portfolio-overlay">
-									<div class="portfolio-content">
-										<h4>Web E-Commerce</h4>
-										<p>Website toko online dengan fitur lengkap untuk penjualan produk</p>
-										<span class="portfolio-tag">E-Commerce</span>
-									</div>
-								</div>
+							</div>
+							<div class="portfolio-info">
+								<h4>Web E-Commerce</h4>
+								<p>Website toko online dengan fitur lengkap untuk penjualan produk</p>
+								<span class="portfolio-tag">E-Commerce</span>
 							</div>
 						</div>
 					</div>
@@ -732,13 +726,11 @@
 						<div class="portfolio-card shadow">
 							<div class="portfolio-image">
 								<img src="../../small-apps/images/feature/feature-new-02.jpg" alt="Company Profile" class="img-fluid">
-								<div class="portfolio-overlay">
-									<div class="portfolio-content">
-										<h4>Company Profile</h4>
-										<p>Website profil perusahaan yang profesional dan modern</p>
-										<span class="portfolio-tag">Company</span>
-									</div>
-								</div>
+							</div>
+							<div class="portfolio-info">
+								<h4>Company Profile</h4>
+								<p>Website profil perusahaan yang profesional dan modern</p>
+								<span class="portfolio-tag">Company</span>
 							</div>
 						</div>
 					</div>
@@ -746,27 +738,23 @@
 						<div class="portfolio-card shadow">
 							<div class="portfolio-image">
 								<img src="../../small-apps/images/feature/iphone-ipad.jpg" alt="Web Inventory" class="img-fluid">
-								<div class="portfolio-overlay">
-									<div class="portfolio-content">
-										<h4>Web Inventory</h4>
-										<p>Sistem manajemen inventory untuk mengelola stok barang</p>
-										<span class="portfolio-tag">Inventory</span>
-									</div>
-								</div>
+							</div>
+							<div class="portfolio-info">
+								<h4>Web Inventory</h4>
+								<p>Sistem manajemen inventory untuk mengelola stok barang</p>
+								<span class="portfolio-tag">Inventory</span>
 							</div>
 						</div>
 					</div>
 					<div class="portfolio-item">
 						<div class="portfolio-card shadow">
 							<div class="portfolio-image">
-								<img src="../../small-apps/images/feature/feature-new-01.jpg" alt="Web Blog" class="img-fluid">
-								<div class="portfolio-overlay">
-									<div class="portfolio-content">
-										<h4>Web Blog</h4>
-										<p>Website blog dengan CMS untuk konten management</p>
-										<span class="portfolio-tag">Blog</span>
-									</div>
-								</div>
+								<img src="../../small-apps/images/feature/feature-new-01.jpg" alt="Web Portfolio" class="img-fluid">
+							</div>
+							<div class="portfolio-info">
+								<h4>Web Portfolio</h4>
+								<p>Website portfolio untuk menampilkan karya dan project Anda</p>
+								<span class="portfolio-tag">Portfolio</span>
 							</div>
 						</div>
 					</div>
@@ -774,13 +762,11 @@
 						<div class="portfolio-card shadow">
 							<div class="portfolio-image">
 								<img src="../../small-apps/images/feature/feature-new-02.jpg" alt="Web Dashboard" class="img-fluid">
-								<div class="portfolio-overlay">
-									<div class="portfolio-content">
-										<h4>Web Dashboard</h4>
-										<p>Dashboard admin untuk monitoring dan analitik data</p>
-										<span class="portfolio-tag">Dashboard</span>
-									</div>
-								</div>
+							</div>
+							<div class="portfolio-info">
+								<h4>Web Dashboard</h4>
+								<p>Dashboard admin untuk monitoring dan analitik data</p>
+								<span class="portfolio-tag">Dashboard</span>
 							</div>
 						</div>
 					</div>
@@ -788,13 +774,11 @@
 						<div class="portfolio-card shadow">
 							<div class="portfolio-image">
 								<img src="../../small-apps/images/feature/iphone-ipad.jpg" alt="Web Landing Page" class="img-fluid">
-								<div class="portfolio-overlay">
-									<div class="portfolio-content">
-										<h4>Web Landing Page</h4>
-										<p>Landing page yang menarik untuk campaign marketing</p>
-										<span class="portfolio-tag">Landing</span>
-									</div>
-								</div>
+							</div>
+							<div class="portfolio-info">
+								<h4>Web Landing Page</h4>
+								<p>Landing page yang menarik untuk campaign marketing</p>
+								<span class="portfolio-tag">Landing</span>
 							</div>
 						</div>
 					</div>
