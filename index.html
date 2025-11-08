@@ -91,7 +91,7 @@
       background: var(--cream-bg) !important;
     }
 
-    #lottie-technology {
+    #lottie-technology, #lottie-webdesign {
       width: 100%;
       max-width: 100%;
       height: auto;
@@ -99,7 +99,7 @@
     }
 
     @media (max-width: 768px) {
-      #lottie-technology {
+      #lottie-technology, #lottie-webdesign {
         min-height: 300px;
       }
     }
@@ -238,7 +238,7 @@
 			</div>
 			<div class="col-lg-6 mr-auto justify-content-center">
 				<div class="image-content" data-aos="fade-left">
-					<img class="img-fluid" src="small-apps/images/feature/feature-new-02.jpg" alt="Joki Website">
+					<div id="lottie-webdesign"></div>
 				</div>
 			</div>
 		</div>
@@ -574,15 +574,25 @@
       this.reset();
     });
 
-    // Load Lottie Animation
+    // Load Lottie Animations
     document.addEventListener('DOMContentLoaded', function() {
       if (typeof lottie !== 'undefined') {
+        // Technology animation
         lottie.loadAnimation({
           container: document.getElementById('lottie-technology'),
           renderer: 'svg',
           loop: true,
           autoplay: true,
           path: 'small-apps/Technology.json'
+        });
+        
+        // Web Design animation
+        lottie.loadAnimation({
+          container: document.getElementById('lottie-webdesign'),
+          renderer: 'svg',
+          loop: true,
+          autoplay: true,
+          path: 'small-apps/web design Lottie animation.json'
         });
       }
     });
