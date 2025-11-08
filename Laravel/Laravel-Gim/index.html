@@ -91,16 +91,21 @@
       background: var(--cream-bg) !important;
     }
 
-    #lottie-technology, #lottie-webdesign, #lottie-contentmanager {
+    #lottie-technology, #lottie-webdesign, #lottie-contentmanager, #lottie-mobile {
       width: 100%;
       max-width: 100%;
       height: auto;
       min-height: 400px;
     }
+    
+    #lottie-mobile {
+      display: block;
+      margin: 0 auto;
+    }
 
     /* Mobile Responsive Styles */
     @media (max-width: 768px) {
-      #lottie-technology, #lottie-webdesign, #lottie-contentmanager {
+      #lottie-technology, #lottie-webdesign, #lottie-contentmanager, #lottie-mobile {
         min-height: 250px;
         max-height: 400px;
       }
@@ -612,7 +617,7 @@
 				<a href="#layanan" class="btn btn-main-md">Lihat Layanan</a>
 			</div>
 			<div class="col-md-6 text-center order-1 order-md-2">
-				<img class="img-fluid" src="../../small-apps/images/mobile.png" alt="Web Development Service">
+				<div id="lottie-mobile" style="width: 100%; min-height: 400px;"></div>
 			</div>
 		</div>
 	</div>
@@ -1076,35 +1081,110 @@
     });
 
     // Load Lottie Animations
-    document.addEventListener('DOMContentLoaded', function() {
-      if (typeof lottie !== 'undefined') {
-        // Technology animation
+    function loadLottieAnimations() {
+      // Wait for Lottie library to be available
+      if (typeof lottie === 'undefined') {
+        setTimeout(loadLottieAnimations, 100);
+        return;
+      }
+      
+      // Technology animation
+      var techContainer = document.getElementById('lottie-technology');
+      if (techContainer) {
         lottie.loadAnimation({
-          container: document.getElementById('lottie-technology'),
+          container: techContainer,
           renderer: 'svg',
           loop: true,
           autoplay: true,
           path: '../../small-apps/Technology.json'
         });
-        
-        // Web Design animation
+      }
+      
+      // Web Design animation
+      var webdesignContainer = document.getElementById('lottie-webdesign');
+      if (webdesignContainer) {
         lottie.loadAnimation({
-          container: document.getElementById('lottie-webdesign'),
+          container: webdesignContainer,
           renderer: 'svg',
           loop: true,
           autoplay: true,
           path: '../../small-apps/web design Lottie animation.json'
         });
-        
-        // Content Manager animation
+      }
+      
+      // Content Manager animation
+      var contentContainer = document.getElementById('lottie-contentmanager');
+      if (contentContainer) {
         lottie.loadAnimation({
-          container: document.getElementById('lottie-contentmanager'),
+          container: contentContainer,
           renderer: 'svg',
           loop: true,
           autoplay: true,
           path: '../../small-apps/Content Manager.json'
         });
       }
+      
+      // Mobile/Thynks animation - THIS IS THE ONE WE'RE ADDING
+      var mobileContainer = document.getElementById('lottie-mobile');
+      if (mobileContainer) {
+        console.log('🔄 Loading Lottie animation for mobile container...');
+        try {
+          var mobileAnimation = lottie.loadAnimation({
+            container: mobileContainer,
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: '../../small-apps/Thynks.json'
+          });
+          
+          mobileAnimation.addEventListener('data_ready', function() {
+            console.log('✅ Lottie mobile animation loaded successfully!');
+          });
+          
+          mobileAnimation.addEventListener('data_failed', function() {
+            console.error('❌ Failed to load from ../../small-apps/Thynks.json, trying alternative...');
+            // Try alternative path
+            try {
+              var altAnimation = lottie.loadAnimation({
+                container: mobileContainer,
+                renderer: 'svg',
+                loop: true,
+                autoplay: true,
+                path: '../../Lottie Technology Thynks.json'
+              });
+              altAnimation.addEventListener('data_ready', function() {
+                console.log('✅ Lottie animation loaded from alternative path!');
+              });
+            } catch (e) {
+              console.error('❌ All paths failed:', e);
+            }
+          });
+        } catch (error) {
+          console.error('❌ Error loading Lottie animation:', error);
+        }
+      } else {
+        console.error('❌ lottie-mobile container not found in DOM');
+      }
+    }
+    
+    // Wait for both DOM and Lottie library to be ready
+    function initLottieAnimations() {
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+          setTimeout(loadLottieAnimations, 500);
+        });
+      } else {
+        setTimeout(loadLottieAnimations, 500);
+      }
+    }
+    
+    // Also try on window load as backup
+    window.addEventListener('load', function() {
+      setTimeout(loadLottieAnimations, 1000);
+    });
+    
+    // Initialize
+    initLottieAnimations();
 
       // Initialize Portfolio Slider
       if (typeof jQuery !== 'undefined' && jQuery.fn.slick) {
