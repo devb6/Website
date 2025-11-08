@@ -124,7 +124,8 @@
     .project-image {
       position: relative;
       overflow: hidden;
-      height: 300px;
+      height: 220px;
+      max-height: 220px;
     }
 
     .project-image img {
@@ -132,6 +133,13 @@
       height: 100%;
       object-fit: cover;
       transition: transform 0.3s ease;
+      display: block;
+    }
+    
+    .project-image img[src=""],
+    .project-image img:not([src]) {
+      background: #f0f0f0;
+      min-height: 220px;
     }
 
     .project-card:hover .project-image img {
@@ -221,7 +229,8 @@
       }
 
       .project-image {
-        height: 250px;
+        height: 200px;
+        max-height: 200px;
       }
     }
 
@@ -248,7 +257,8 @@
       }
 
       .project-image {
-        height: 220px;
+        height: 180px;
+        max-height: 180px;
       }
 
       .project-content {
@@ -326,7 +336,8 @@
       }
 
       .project-image {
-        height: 200px;
+        height: 160px;
+        max-height: 160px;
       }
 
       .project-content {
@@ -566,9 +577,9 @@
       <div class="col-lg-6 mb-4">
         <div class="project-card">
           <div class="project-image">
-            <img src="../posyandu/Screenshot (889).png" alt="Sistem Informasi Posyandu" class="img-fluid">
+            <img src="../../posyandu/Screenshot%20(889).png" alt="Sistem Informasi Posyandu" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.src='../../posyandu/Screenshot (889).png';">
             <div class="project-overlay">
-              <a href="../posyandu/index.html" target="_blank" class="preview-btn">
+              <a href="../../posyandu/index.html" target="_blank" class="preview-btn">
                 <i class="ti-eye mr-2"></i>Lihat Preview
               </a>
             </div>
@@ -578,9 +589,9 @@
             <h3 class="project-title">Sistem Informasi Posyandu</h3>
             <p class="project-subtitle">CRUD + RBA</p>
             <p class="project-description">
-              Sistem informasi untuk mengelola data posyandu dengan fitur CRUD (Create, Read, Update, Delete) lengkap dan Rencana Belanja Anggaran (RBA). Aplikasi web ini dibangun menggunakan framework Laravel dengan desain modern menggunakan Tailwind CSS, menyediakan antarmuka yang user-friendly untuk pengelolaan data posyandu.
+              Sistem informasi untuk mengelola data posyandu dengan fitur CRUD (Create, Read, Update, Delete) lengkap dan Role Based Access (RBA). Aplikasi web ini dibangun menggunakan framework Laravel dengan desain modern menggunakan Tailwind CSS, menyediakan sistem kontrol akses berbasis role untuk mengatur hak akses pengguna sesuai dengan peran mereka dalam sistem.
             </p>
-            <a href="../posyandu/index.html" target="_blank" class="preview-btn text-center">
+            <a href="../../posyandu/index.html" target="_blank" class="preview-btn text-center">
               <i class="ti-eye mr-2"></i>Lihat Preview
             </a>
           </div>
@@ -591,9 +602,9 @@
       <div class="col-lg-6 mb-4">
         <div class="project-card">
           <div class="project-image">
-            <img src="../ECOMMERCE/Screenshot (894).png" alt="Web E-Commerce" class="img-fluid">
+            <img src="../../ECOMMERCE/Screenshot%20(894).png" alt="Web E-Commerce" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.src='../../ECOMMERCE/Screenshot (894).png';">
             <div class="project-overlay">
-              <a href="../ECOMMERCE/index.html" target="_blank" class="preview-btn">
+              <a href="../../ECOMMERCE/index.html" target="_blank" class="preview-btn">
                 <i class="ti-eye mr-2"></i>Lihat Preview
               </a>
             </div>
@@ -605,7 +616,7 @@
             <p class="project-description">
               Platform e-commerce yang lengkap dan modern untuk kebutuhan bisnis online. Dibangun dengan Laravel dan Tailwind CSS, website ini menyediakan berbagai fitur e-commerce seperti katalog produk, keranjang belanja, checkout, dan manajemen pesanan. Desain responsif dan user-friendly membuat pengalaman belanja menjadi lebih menyenangkan.
             </p>
-            <a href="../ECOMMERCE/index.html" target="_blank" class="preview-btn text-center">
+            <a href="../../ECOMMERCE/index.html" target="_blank" class="preview-btn text-center">
               <i class="ti-eye mr-2"></i>Lihat Preview
             </a>
           </div>
