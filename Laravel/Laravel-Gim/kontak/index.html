@@ -579,6 +579,90 @@
         margin-bottom: 2rem;
       }
     }
+
+    .info-notice-card {
+      background: linear-gradient(135deg, #fff3cd 0%, #ffe69c 100%);
+      border: 2px solid #ffc107;
+      border-radius: 15px;
+      padding: 2rem;
+      margin: 2rem auto;
+      max-width: 900px;
+      box-shadow: 0 5px 20px rgba(255, 193, 7, 0.3);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .info-notice-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, #ffc107, #ff9800, #ffc107);
+    }
+
+    .info-notice-card .notice-icon {
+      font-size: 3rem;
+      color: #ff9800;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .info-notice-card h4 {
+      color: #856404;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .info-notice-card p {
+      color: #856404;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .info-notice-card {
+        padding: 1.5rem;
+        margin: 1.5rem auto;
+      }
+
+      .info-notice-card .notice-icon {
+        font-size: 2.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .info-notice-card h4 {
+        font-size: 1.3rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .info-notice-card p {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .info-notice-card {
+        padding: 1.25rem;
+        margin: 1rem auto;
+      }
+
+      .info-notice-card .notice-icon {
+        font-size: 2rem;
+      }
+
+      .info-notice-card h4 {
+        font-size: 1.1rem;
+      }
+
+      .info-notice-card p {
+        font-size: 0.95rem;
+      }
+    }
   </style>
 
 </head>
@@ -621,6 +705,16 @@
         <h1>Hubungi Kami</h1>
         <p>Konsultasikan kebutuhan website Anda dengan kami. Kami siap membantu mewujudkan website impian Anda!</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section">
+  <div class="container">
+    <div class="info-notice-card">
+      <i class="ti-info-alt notice-icon"></i>
+      <h4>Kami tidak melayani pembuatan situs Judi Online</h4>
+      <p>Konsultasikan kebutuhan website Anda dengan kami. Kami siap membantu mewujudkan website impian Anda!</p>
     </div>
   </div>
 </section>
