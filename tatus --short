@@ -1,0 +1,81 @@
+warning: in the working copy of 'Laravel/Laravel-Gim/index.html', LF will be replaced by CRLF the next time Git touches it
+[1mdiff --git a/Laravel/Laravel-Gim/index.html b/Laravel/Laravel-Gim/index.html[m
+[1mindex b68c551..9cd3c46 100644[m
+[1m--- a/Laravel/Laravel-Gim/index.html[m
+[1m+++ b/Laravel/Laravel-Gim/index.html[m
+[36m@@ -909,7 +909,7 @@[m
+ [m
+ <nav class="navbar main-nav navbar-expand-lg px-2 px-sm-0 py-2 py-lg-0">[m
+   <div class="container">[m
+[31m-    <a class="navbar-brand" href="./"><img src="../../small-apps/images/logo-new.png" alt="logo" style="max-height: 45px; width: auto;"></a>[m
+[32m+[m[32m    <a class="navbar-brand" href="index.html"><img src="../../small-apps/images/logo-new.png" alt="logo" style="max-height: 45px; width: auto;"></a>[m
+     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"[m
+       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">[m
+       <span class="ti-menu"></span>[m
+[36m@@ -929,7 +929,7 @@[m
+           <a class="nav-link" href="#portfolio">Portfolio</a>[m
+         </li>[m
+         <li class="nav-item">[m
+[31m-          <a class="nav-link" href="kontak/">Kontak</a>[m
+[32m+[m[32m          <a class="nav-link" href="kontak.html">Kontak</a>[m
+         </li>[m
+       </ul>[m
+     </div>[m
+[36m@@ -952,7 +952,7 @@[m
+ 			<div class="col-md-6 order-2 order-md-1 text-center text-md-left">[m
+ 				<h1 class="text-white font-weight-bold mb-4">Jasa Pembuatan Website Profesional & Joki Website untuk Skripsi</h1>[m
+ 				<p class="text-white mb-5">Solusi terpercaya untuk pembuatan website, joki website skripsi, tugas akhir, dan project lainnya. Tim berpengalaman siap membantu mewujudkan website impian Anda dengan kualitas profesional.</p>[m
+[31m-				<a href="kontak/" class="btn btn-main-md mr-3">Konsultasi Gratis</a>[m
+[32m+[m				[32m<a href="kontak.html" class="btn btn-main-md mr-3">Konsultasi Gratis</a>[m
+ 				<a href="#layanan" class="btn btn-main-md">Lihat Layanan</a>[m
+ 			</div>[m
+ 			<div class="col-md-6 text-center order-1 order-md-2">[m
+[36m@@ -1229,7 +1229,7 @@[m
+ 				<p class="mt-3 mb-4" style="font-size: 0.9rem; opacity: 0.9;"><i class="ti-info-alt"></i> <strong>Catatan:</strong> Kami tidak melayani pembuatan website Judi Online.</p>[m
+ 				<ul class="list-inline mt-4">[m
+ 					<li class="list-inline-item">[m
+[31m-						<a href="kontak/" class="btn btn-rounded-icon">[m
+[32m+[m						[32m<a href="kontak.html" class="btn btn-rounded-icon">[m
+ 							<i class="ti-email"></i>[m
+ 							Hubungi Kami[m
+ 						</a>[m
+[36m@@ -1253,7 +1253,7 @@[m
+       <div class="row">[m
+         <div class="col-lg-4 col-md-12 m-md-auto align-self-center">[m
+           <div class="block">[m
+[31m-            <a href="./"><img src="../../small-apps/images/logo-new.png" alt="footer-logo" class="footer-logo" style="max-height: 45px; width: auto; display: block;"></a>[m
+[32m+[m[32m            <a href="index.html"><img src="../../small-apps/images/logo-new.png" alt="footer-logo" class="footer-logo" style="max-height: 45px; width: auto; display: block;"></a>[m
+             <p class="mt-3">Jasa pembuatan website profesional dan joki website untuk skripsi. Solusi terpercaya untuk kebutuhan website Anda.</p>[m
+             <ul class="social-icon list-inline">[m
+               <li class="list-inline-item">[m
+[36m@@ -1289,7 +1289,7 @@[m
+               <li><a href="#home">Tentang Kami</a></li>[m
+               <li><a href="#keunggulan">Keunggulan</a></li>[m
+               <li><a href="#portfolio">Portfolio</a></li>[m
+[31m-              <li><a href="kontak/">Kontak</a></li>[m
+[32m+[m[32m              <li><a href="https://wa.me/628975846661" target="_blank">Kontak</a></li>[m
+             </ul>[m
+           </div>[m
+         </div>[m
+[36m@@ -1349,7 +1349,7 @@[m
+         }[m
+       });[m
+     });[m
+[31m-[m
+[32m+[m[41m    [m
+     function initLottieAnimations() {[m
+       if (typeof lottie === 'undefined' || typeof lottie.loadAnimation === 'undefined') {[m
+         console.warn('Lottie library not ready, retrying...');[m
+[36m@@ -1424,9 +1424,9 @@[m
+         try {[m
+           const animation = lottie.loadAnimation({[m
+             container: container,[m
+[31m-            renderer: 'svg',[m
+[31m-            loop: true,[m
+[31m-            autoplay: true,[m
+[32m+[m[32m          renderer: 'svg',[m
+[32m+[m[32m          loop: true,[m
+[32m+[m[32m          autoplay: true,[m
+             path: animationPath[m
+           });[m
+ [m
